@@ -1,0 +1,90 @@
+2020-03-03 06:53:48.093  INFO 11000 --- [main] a.a.f.s.swpj4bb.touristoffice.demo.Main  : Starting Main on Mobilflunder with PID 11000 (C:\_Daten\Java\Sommersemester\S20\SWPJ4\TouristOffice-Spring\target\classes started by pc in C:\_Daten\Java\Sommersemester\S20\SWPJ4\TouristOffice-Spring)
+2020-03-03 06:53:48.140  INFO 11000 --- [main] a.a.f.s.swpj4bb.touristoffice.demo.Main  : No active profile set, falling back to default profiles: default
+2020-03-03 06:53:50.327  INFO 11000 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-03-03 06:53:50.499  INFO 11000 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 132ms. Found 1 JPA repository interfaces.
+2020-03-03 06:53:51.155  INFO 11000 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-03 06:53:51.577  INFO 11000 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-03 06:53:51.593  INFO 11000 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-03 06:53:51.593  INFO 11000 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-03-03 06:53:51.811  INFO 11000 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-03-03 06:53:51.811  INFO 11000 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3561 ms
+2020-03-03 06:53:51.889  INFO 11000 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-03-03 06:53:52.171  INFO 11000 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-03-03 06:53:52.217  INFO 11000 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:~/test'
+2020-03-03 06:53:52.467  INFO 11000 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-03-03 06:53:52.608  INFO 11000 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.10.Final}
+2020-03-03 06:53:52.873  INFO 11000 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-03-03 06:53:53.155  INFO 11000 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2020-03-03 06:53:54.029  INFO 11000 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-03-03 06:53:54.045  INFO 11000 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-03-03 06:53:54.779 DEBUG 11000 --- [main] org.hibernate.SQL                        : select hotel0_.id as id1_0_, hotel0_.address as address2_0_, hotel0_.category as category3_0_, hotel0_.city as city4_0_, hotel0_.zip as zip5_0_, hotel0_.contact as contact6_0_, hotel0_.name as name7_0_, hotel0_.beds as beds8_0_, hotel0_.rooms as rooms9_0_, hotel0_.owner as owner10_0_, hotel0_.phone as phone11_0_ from hotel hotel0_
+2020-03-03 06:53:55.763  WARN 11000 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-03-03 06:53:55.920  INFO 11000 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-03 06:53:56.029  INFO 11000 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-03-03 06:53:56.357  INFO 11000 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-03 06:53:56.373  INFO 11000 --- [main] a.a.f.s.swpj4bb.touristoffice.demo.Main  : Started Main in 9.062 seconds (JVM running for 12.697)
+2020-03-03 06:53:56.482  INFO 11000 --- [http-nio-8080-exec-10] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-03 06:53:56.482  INFO 11000 --- [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-03 06:53:56.498  INFO 11000 --- [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : Completed initialization in 16 ms
+2020-03-03 06:54:50.106  WARN 11000 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=57s836ms889µs400ns).
+2020-03-03 06:54:50.387  INFO 11000 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-03-03 06:54:50.387  INFO 11000 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-03-03 06:54:50.403  INFO 11000 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-03-03 06:54:50.450  INFO 11000 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-03-03 07:02:36.892  INFO 9364 --- [main] a.a.f.s.swpj4bb.touristoffice.demo.Main  : Starting Main on Mobilflunder with PID 9364 (C:\_Daten\Java\Sommersemester\S20\SWPJ4\TouristOffice-Spring\target\classes started by pc in C:\_Daten\Java\Sommersemester\S20\SWPJ4\TouristOffice-Spring)
+2020-03-03 07:02:36.892  INFO 9364 --- [main] a.a.f.s.swpj4bb.touristoffice.demo.Main  : No active profile set, falling back to default profiles: default
+2020-03-03 07:02:38.032  INFO 9364 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-03-03 07:02:38.094  INFO 9364 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 67ms. Found 1 JPA repository interfaces.
+2020-03-03 07:02:38.376  INFO 9364 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-03 07:02:38.626  INFO 9364 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-03 07:02:38.641  INFO 9364 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-03 07:02:38.641  INFO 9364 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-03-03 07:02:38.782  INFO 9364 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-03-03 07:02:38.782  INFO 9364 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1797 ms
+2020-03-03 07:02:38.813  INFO 9364 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-03-03 07:02:38.969  INFO 9364 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-03-03 07:02:39.032  INFO 9364 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:~/test'
+2020-03-03 07:02:39.172  INFO 9364 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-03-03 07:02:39.235  INFO 9364 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.10.Final}
+2020-03-03 07:02:39.344  INFO 9364 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-03-03 07:02:39.438  INFO 9364 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2020-03-03 07:02:39.844  INFO 9364 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-03-03 07:02:39.844  INFO 9364 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-03-03 07:02:40.235 DEBUG 9364 --- [main] org.hibernate.SQL                        : select hotel0_.id as id1_0_, hotel0_.address as address2_0_, hotel0_.category as category3_0_, hotel0_.city as city4_0_, hotel0_.zip as zip5_0_, hotel0_.contact as contact6_0_, hotel0_.name as name7_0_, hotel0_.beds as beds8_0_, hotel0_.rooms as rooms9_0_, hotel0_.owner as owner10_0_, hotel0_.phone as phone11_0_ from hotel hotel0_
+2020-03-03 07:02:40.750  WARN 9364 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-03-03 07:02:40.875  INFO 9364 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-03 07:02:40.938  INFO 9364 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-03-03 07:02:41.109  INFO 9364 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-03 07:02:41.109  INFO 9364 --- [main] a.a.f.s.swpj4bb.touristoffice.demo.Main  : Started Main in 4.881 seconds (JVM running for 6.694)
+2020-03-03 07:02:50.357  INFO 9364 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-03 07:02:50.357  INFO 9364 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-03 07:02:50.373  INFO 9364 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 16 ms
+2020-03-03 07:13:55.552  INFO 8992 --- [main] a.a.f.s.swpj4bb.touristoffice.demo.Main  : Starting Main on Mobilflunder with PID 8992 (C:\_Daten\Java\Sommersemester\S20\SWPJ4\TouristOffice-Spring\target\classes started by pc in C:\_Daten\Java\Sommersemester\S20\SWPJ4\TouristOffice-Spring)
+2020-03-03 07:13:55.567  INFO 8992 --- [main] a.a.f.s.swpj4bb.touristoffice.demo.Main  : No active profile set, falling back to default profiles: default
+2020-03-03 07:13:56.614  INFO 8992 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-03-03 07:13:56.739  INFO 8992 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 100ms. Found 1 JPA repository interfaces.
+2020-03-03 07:13:57.239  INFO 8992 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-03 07:13:57.848  INFO 8992 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-03 07:13:57.864  INFO 8992 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-03 07:13:57.864  INFO 8992 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-03-03 07:13:58.098  INFO 8992 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-03-03 07:13:58.098  INFO 8992 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2468 ms
+2020-03-03 07:13:58.161  INFO 8992 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-03-03 07:13:58.317  INFO 8992 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-03-03 07:13:58.364  INFO 8992 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:~/test'
+2020-03-03 07:13:58.504  INFO 8992 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-03-03 07:13:58.582  INFO 8992 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.10.Final}
+2020-03-03 07:13:58.692  INFO 8992 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-03-03 07:13:58.801  INFO 8992 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2020-03-03 07:13:59.238  INFO 8992 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-03-03 07:13:59.254  INFO 8992 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-03-03 07:13:59.660 DEBUG 8992 --- [main] org.hibernate.SQL                        : select hotel0_.id as id1_0_, hotel0_.address as address2_0_, hotel0_.category as category3_0_, hotel0_.city as city4_0_, hotel0_.zip as zip5_0_, hotel0_.contact as contact6_0_, hotel0_.name as name7_0_, hotel0_.beds as beds8_0_, hotel0_.rooms as rooms9_0_, hotel0_.owner as owner10_0_, hotel0_.phone as phone11_0_ from hotel hotel0_
+2020-03-03 07:14:00.191  WARN 8992 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-03-03 07:14:00.301  INFO 8992 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-03 07:14:00.363  INFO 8992 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-03-03 07:14:00.535  INFO 8992 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-03 07:14:00.535  INFO 8992 --- [main] a.a.f.s.swpj4bb.touristoffice.demo.Main  : Started Main in 5.545 seconds (JVM running for 7.191)
+2020-03-03 07:14:08.080  INFO 8992 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-03 07:14:08.080  INFO 8992 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-03 07:14:08.096  INFO 8992 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 16 ms
+2020-03-03 07:14:20.827  WARN 8992 --- [http-nio-8080-exec-2] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [219] milliseconds.
