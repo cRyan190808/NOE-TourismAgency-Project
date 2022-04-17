@@ -25,9 +25,9 @@
     <tr th:each="hotel, iStat : ${hotelPage.content}"
         th:style="${iStat.odd}? 'font-weight: bold;'"
         th:alt-title="${iStat.even}? 'even' : 'odd'">
-        <td th:text="${hotel.id}" />
-        <td th:text="${hotel.name}" />
-        <td th:text="${hotel.address}" />
+        <td th:text="${hotel.id}"></td>
+        <td th:text="${hotel.name}"></td>
+        <td th:text="${hotel.address}"></td>
     </tr>
     </tbody>
 </table>

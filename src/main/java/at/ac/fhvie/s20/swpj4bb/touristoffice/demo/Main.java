@@ -20,6 +20,8 @@ public class Main {
     MainMenuController mainMenuController = context.getBean(MainMenuController.class);
     mainMenuController.prepareAndOpenFrame();
 
+    //TEXT
+
   }
 }
 // CSON: HideUtilityClassConstructor
