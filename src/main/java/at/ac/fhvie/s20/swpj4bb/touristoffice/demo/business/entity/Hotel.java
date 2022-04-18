@@ -15,11 +15,9 @@ import javax.persistence.Id;
 
 
 @Entity
-
 // The @Data annotation is important for the web form. Without this annotation a web form
 // won't work!!!!!!
 @Data
-
 // The following annotations are for Lombok that we do not have to create the Getters,
 // a constructor with all arguments, a constructor with no arguments and a toString() Methods
 @Getter
