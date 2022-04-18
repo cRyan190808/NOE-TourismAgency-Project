@@ -16,12 +16,12 @@ import javax.persistence.Id;
 
 @Entity
 
-// The @Data annotation is important for the web form. Without this annotoation a web form
+// The @Data annotation is important for the web form. Without this annotation a web form
 // won't work!!!!!!
 @Data
 
 // The following annotations are for Lombok that we do not have to create the Getters,
-// a constructor with all arguments, a constructor with no arguments an a toString() Methos
+// a constructor with all arguments, a constructor with no arguments and a toString() Methods
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -38,8 +38,8 @@ public final class Hotel {
 
   private Category category;
 
-   String name;
-   String owner;
+  String name;
+  String owner;
   private String contact;
   private String address;
   private String city;
