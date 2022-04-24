@@ -17,6 +17,7 @@ CREATE TABLE hotel
   zip     TEXT NOT NULL,
   phone   TEXT NOT NULL,
   rooms   int  not null,
-  beds    int  not null
+  beds    int  not null,
+  dogfriendly tinyint not null
 );
 
