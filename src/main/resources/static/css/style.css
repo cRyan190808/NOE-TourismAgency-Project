@@ -13,3 +13,13 @@ table {
 table th, table td {
     padding: 6px;
 }
+
+.nav-link {
+    font-size: 24px;
+}
+
+.pages {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

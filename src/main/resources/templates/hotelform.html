@@ -3,8 +3,41 @@
 <head>
     <title>Add new Hotel</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../static/css/style.css">
 </head>
 <body>
+
+<!-- NAVBAR - https://getbootstrap.com/docs/4.0/components/navbar/ -->
+<nav class="navbar navbar-expand-xl navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+        <img src="../images/NOE_LOGO.png" height="120" width="100" />
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Hotels</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- NAVBAR - https://getbootstrap.com/docs/4.0/components/navbar/ -->
+
 <!-- Text must be enclosed in single quotes!!! -->
 <p th:text="'Add new Hotel'" />
 
@@ -13,22 +46,66 @@
     <p th:text= "'Error: ' + ${error}" />
 </div>
 
-<form action="#" th:action="@{/hotelform}" th:object="${command}" method="post">
-    <p>Hotel name: <input type="text" th:field="*{name}" /></p>
-    <p>Owner: <input type="text" th:field="*{owner}" /></p>
-    <p>Contact: <input type="text" th:field="*{contact}" /></p>
-    <p>Address: <input type="text" th:field="*{address}" /></p>
-    <p>City: <input type="text" th:field="*{city}" /></p>
+<!-- Form Controls -  https://getbootstrap.com/docs/5.0/forms/form-control/ -->
+<form style="width: 400px; margin: auto" th:action="@{/hotelform}" th:object="${command}" method="post">
+    <p>Hotel name: <input class="form-control" type="text" placeholder="e.g. Hotel Muster" th:field="*{name}" /></p>
+    <p>Owner: <input class="form-control" type="text" placeholder="e.g. Mika Muster" th:field="*{owner}" /></p>
+    <p>Contact: <input class="form-control" type="text" placeholder="e.g. Elia Somebody" th:field="*{contact}" /></p>
+    <p>Address: <input class="form-control" type="text" placeholder="e.g. Muster-Platz 1" th:field="*{address}" /></p>
+    <p>City: <input class="form-control" type="text" placeholder="e.g. Musterstadt" th:field="*{city}" /></p>
     <!-- Beware : The field name is case sensitive!!! It has to be named exactly as it is in the class!!! -->
-    <p>City Code: <input type="text" th:field="*{cityCode}" /></p>
-    <p>Hotel name: <input type="text" th:field="*{phone}" /></p>
+    <p>City Code: <input class="form-control" type="text" placeholder="e.g. 2345" th:field="*{cityCode}" /></p>
+    <p>Phone Number: <input class="form-control" type="text" placeholder="e.g. +43 222 123456" th:field="*{phone}" /></p>
     <!-- The same with the room and bed count! Try to change noRooms to rooms and you will see that IntelliJ underlines the
     // name. This is an indication that something is wrong-->
-    <p>Number of Rooms: <input type="text" th:field="*{noRooms}" /></p>
-    <p>Number of Beds: <input type="text" th:field="*{noBeds}" /></p>
-    <!--
--->
-    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /> </p>
+
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <p>Number of Rooms: <input class="form-control" type="number" th:field="*{noRooms}"/></p>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <p>Number of Beds: <input class="form-control" type="number" th:field="*{noBeds}"/></p>
+            </div>
+        </div>
+    </div>
+
+    <p>Features: </p>
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <div>
+                    <input type="checkbox" id="familyFriendly" name="familyFriendly">
+                    <label th:field="*{familyFriendly}">Family Friendly</label>
+                </div>
+
+                <div>
+                    <input type="checkbox" id="dogFriendly" name="dogFriendly">
+                    <label th:field="*{dogFriendly}">Dog Friendly</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="form-group">
+                <div>
+                    <input type="checkbox" id="spa" name="spa">
+                    <label for="spa" th:field="*{spa}">SPA</label>
+                </div>
+
+                <div>
+                    <input type="checkbox" id="fitness" name="fitness">
+                    <label for="fitness" th:field="*{fitness}">Fitness</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="reset" class="btn btn-secondary">Reset</button>
+
 </form>
 </body>
 </html>
