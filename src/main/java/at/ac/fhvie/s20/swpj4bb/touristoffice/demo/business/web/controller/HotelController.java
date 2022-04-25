@@ -8,6 +8,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
+
 @Controller
 public class HotelController {
 
@@ -45,10 +47,10 @@ public class HotelController {
     // With using Attribute the request parameters are created out of the attributes and are serialized
     // RedriectAttributes are not serialized and can therefore store any object
 
-    String error = hotelValidator.validate(command);
+    ArrayList<String> errors = hotelValidator.validate(command);
     // You have to format the error string for displaying it in HTML.
     // On a web page the \n is not valid and so no line feed is made.
-    if (!error.isEmpty()) {
+    if (!errors.isEmpty()) {
       // If there is an error the hotelform template gets the current values and the error string
       // Alternatively the error could be transmitted as a formatted HTML string or an ArrayList
       // with all the errors and then put together in the template
@@ -56,7 +58,7 @@ public class HotelController {
       // (Swing/Web/App) but it has to be formatted later. A possibility could be in a Factory Pattern where you
       // provide the data and request a certain format and receive a formatted String.
       // So the Factory is responsible for the correct formatting. And further formats are only implemented in that Factory.
-      model.addAttribute("error", error);
+      model.addAttribute("error", errors);
       //model.addAttribute("command", command);
       return "hotelform";
     }

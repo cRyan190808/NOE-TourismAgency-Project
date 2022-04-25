@@ -75,9 +75,8 @@ public class MainMenuController extends AbstractFrameController implements Hotel
     registerAction(addHotelDialog.getSaveButton(), this::closeAddHotelDialogSave);
   }
 
-
   /**
-   * Handles the Cancel Button of the dialog to add or edit a  hotel
+   * Handles the Cancel Button of the dialog to add or edit a hotel
    *
    * @param e {@link ActionEvent}
    */
@@ -86,7 +85,7 @@ public class MainMenuController extends AbstractFrameController implements Hotel
   }
 
   /**
-   * Handles the closing the dialog for adding or editing  a hotel with validation
+   * Handles the closing the dialog for adding or editing a hotel with validation
    * and saving the entered data
    *
    * @param e {@link ActionEvent}
@@ -96,7 +95,10 @@ public class MainMenuController extends AbstractFrameController implements Hotel
     Hotel hotel = addHotelDialog.getDataFromForm();
 
     // Validate the data with a distinct validator that is decoupled from the class
-    String error = hotelValidator.validate(hotel);
+    // String error = hotelValidator.validate(hotel);
+
+    //Note Christopher: Validator is important/relevant for Swing; Arraylist in validator activated
+    String error = "";
 
     if (!error.isEmpty()) {
       // The entered data is not valid so show a notification to the ser
@@ -168,7 +170,6 @@ public class MainMenuController extends AbstractFrameController implements Hotel
     addHotelDialog.setVisible(true);
   }
 
-
   /**
    * Create and return a collection of all hotel names
    *
@@ -189,6 +190,4 @@ public class MainMenuController extends AbstractFrameController implements Hotel
     // use a service to retrieve the hotel data from the database
     return hotelService.findHotelByName(name);
   }
-
-
 }

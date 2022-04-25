@@ -3,6 +3,8 @@ package at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.validation;
 import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.entity.Hotel;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList; // Note Christopher:
+                            // Reference to ui/main_menu/controller/MainMenuController Row100
 /**
  * Validation class for the Hotel class
  */
@@ -15,44 +17,45 @@ public class HotelValidator extends ValidationSupport implements Validator<Hotel
    * @return String with the error message. Empty when no error occured
    */
   @Override
-  public String validate(final Hotel hotel) {
+  public ArrayList<String> validate(final Hotel hotel) {
+    ArrayList<String> errors = new ArrayList<>();
     String error = "";
 
     if (isNullOrEmptyString(hotel.getName())) {
-      error += nameExceptionMessage();
+      errors.add(nameExceptionMessage());
     }
 
     if (isNullOrEmptyString(hotel.getOwner())) {
-      error += ownerExceptionMessage();
+      errors.add(ownerExceptionMessage());
     }
 
     if (isNullOrEmptyString(hotel.getContact())) {
-      error += contactExceptionMessage();
+      errors.add(contactExceptionMessage());
     }
     if (isNullOrEmptyString(hotel.getAddress())) {
-      error += addressExceptionMessage();
+      errors.add(addressExceptionMessage());
     }
     if (isNullOrEmptyString(hotel.getCity())) {
-      error += cityExceptionMessage();
+      errors.add(cityExceptionMessage());
     }
     if (isNullOrEmptyString(hotel.getCityCode())) {
-      error += cityCodeExceptionMessage();
+      errors.add(cityCodeExceptionMessage());
     }
     if (isNullOrEmptyString(hotel.getPhone())) {
-      error += phoneExceptionMessage();
+      errors.add(phoneExceptionMessage());
     }
     if (isLessEqualZero(hotel.getNoBeds())) {
-      error += bedExceptionMessage(hotel.getNoBeds());
+      errors.add(bedExceptionMessage(hotel.getNoBeds()));
     }
 
     if (isLessEqualZero(hotel.getNoRooms())) {
-      error += bedExceptionMessage(hotel.getNoRooms());
+      errors.add(bedExceptionMessage(hotel.getNoRooms()));
     }
 
     // Maybe it is not so optimal that a String with all the error messages in one single String is returned.
     // Maybe an ArrayList with the entries separated is the better solution. In one single string it is good for swing
     // but separates Strings are better in HTML
-    return error;
+    return errors;
   }
 
   private String nameExceptionMessage() {
@@ -87,7 +90,7 @@ public class HotelValidator extends ValidationSupport implements Validator<Hotel
     return "Bettenzahl muss größer als 0 sein (Ist:" + errorValue + ").\n";
   }
 
-  private String roomExceptionMessage(final int errorValue, final int limit) {
+  private String roomExceptionMessage(final int errorValue) {
     return "Raumzahl muss größer als 0 sein (Ist:" + errorValue + ").\n";
   }
 

@@ -6,6 +6,6 @@ package at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.validation;
  */
 interface Validator<K> {
 
-  String validate(K value);
+  ArrayList<String> validate(K value);
 
 }
