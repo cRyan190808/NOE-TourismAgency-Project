@@ -8,7 +8,7 @@ DROP TABLE IF EXISTS hotel;
 CREATE TABLE hotel
 (
   id      INT  NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  category int NOT NULL ,
+  category int NOT NULL,
   name    TEXT NOT NULL,
   owner   TEXT NOT NULL,
   contact TEXT NOT NULL,

@@ -51,6 +51,14 @@ public final class Hotel {
   // Mapping between database field and variable
   @Column(name = "beds")
   private int noBeds;
+  @Column(name = "family_friendly")
+  private String familyFriendly;
+  @Column(name = "dog_friendly")
+  private String dogFriendly;
+
+  private String url;
+  private String spa;
+  private String fitness;
 
   public static HotelBuilder builder() {
     return new HotelBuilder();
@@ -67,9 +75,13 @@ public final class Hotel {
     this.phone = other.phone;
     this.noRooms = other.noRooms;
     this.noBeds = other.noBeds;
+    this.url = other.url;
+    this.familyFriendly = other.familyFriendly;
+    this.dogFriendly = other.dogFriendly;
+    this.spa = other.spa;
+    this.fitness = other.fitness;
     return this;
   }
-
 
   public static class HotelBuilder {
     private int id;
@@ -83,6 +95,11 @@ public final class Hotel {
     private String phone;
     private int noRooms;
     private int noBeds;
+    private String url;
+    private String familyFriendly;
+    private String dogFriendly;
+    private String spa;
+    private String fitness;
 
     public HotelBuilder() {
     }
@@ -153,9 +170,39 @@ public final class Hotel {
       return this;
     }
 
+    @SuppressWarnings("checkstyle:hiddenField")
+    public HotelBuilder url(final String url) {
+      this.url = url;
+      return this;
+    }
+
+    @SuppressWarnings("checkstyle:hiddenField")
+    public HotelBuilder familyFriendly(final String familyFriendly) {
+      this.familyFriendly = familyFriendly;
+      return this;
+    }
+
+    @SuppressWarnings("checkstyle:hiddenField")
+    public HotelBuilder dogFriendly(final String dogFriendly) {
+      this.dogFriendly = dogFriendly;
+      return this;
+    }
+
+    @SuppressWarnings("checkstyle:hiddenField")
+    public HotelBuilder spa(final String spa) {
+      this.spa = spa;
+      return this;
+    }
+
+    @SuppressWarnings("checkstyle:hiddenField")
+    public HotelBuilder fitness(final String fitness) {
+      this.fitness = fitness;
+      return this;
+    }
+
     public Hotel build() {
       return new Hotel(id, category, name, owner, contact, address, city, cityCode, phone,
-          noRooms, noBeds);
+          noRooms, noBeds, url, familyFriendly, dogFriendly, spa, fitness);
     }
 
     public String toString() {
@@ -163,9 +210,9 @@ public final class Hotel {
           + this.category + ", name=" + this.name + ", owner=" + this.owner
           + ", contact=" + this.contact + ", address=" + this.address + ", city="
           + this.city + ", cityCode=" + this.cityCode + ", phone=" + this.phone
-          + ", noRooms=" + this.noRooms + ", noBeds=" + this.noBeds + ")";
+          + ", noRooms=" + this.noRooms + ", noBeds=" + this.noBeds
+          + ", url= " + this.url + ", familyFriendly" + this.familyFriendly
+          + ",dogFriendly" + this.dogFriendly + ", spa" + this.spa + ", fitness" + this.fitness + ")";
     }
   }
-
-
 }
