@@ -43,7 +43,7 @@
 
 <!-- Display a possible error text -->
 <div  th:if="${error != null }" th:text="${error}">
-    <p th:text= "'Error: ' + ${error}" />
+    <p th:text="'Error: ' + ${error}" />
 </div>
 
 <!-- Form Controls -  https://getbootstrap.com/docs/5.0/forms/form-control/ -->
@@ -107,5 +107,10 @@
     <button type="reset" class="btn btn-secondary">Reset</button>
 
 </form>
+
+<nav class="navbar fixed-bottom navbar-light bg-light">
+    <a style="color: black" class="navbar-brand" href="#!"> Version: 0.3 </a>
+</nav>
+
 </body>
 </html>

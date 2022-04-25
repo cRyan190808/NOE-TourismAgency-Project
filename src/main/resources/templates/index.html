@@ -4,11 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>NOE Tourismus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../static/css/style.css">
 </head>
 <body>
 
@@ -61,10 +63,10 @@
         <td th:text="${hotel.city}"></td>
         <td th:text="${hotel.contact}"></td>
         <td th:text="${hotel.url}"></td>
-        <td th:text="${hotel.familyFriendly}"></td>
-        <td th:text="${hotel.dogFriendly}"></td>
-        <td th:text="${hotel.spa}"></td>
-        <td th:text="${hotel.fitness}"></td>
+        <td th:text="${hotel.familyFriendly} ? 'ja' : 'nein' "/>
+        <td th:text="${hotel.dogFriendly} ? 'ja' : 'nein' "/>
+        <td th:text="${hotel.spa} ? 'ja' : 'nein' "/>
+        <td th:text="${hotel.fitness} ? 'ja' : 'nein' "/>
     </tr>
     </tbody>
 </table>
@@ -76,6 +78,10 @@
        th:class="${pageNumber==hotelPage.number} ? active">
     </a>
 </div>
+
+<nav class="navbar fixed-bottom navbar-light bg-light">
+    <a style="color: black" class="navbar-brand" href="#!"> Version: 0.3 </a>
+</nav>
 
 </body>
 </html>
