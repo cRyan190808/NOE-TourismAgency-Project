@@ -1,6 +1,7 @@
 package at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.web.controller;
 
 import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.entity.Hotel;
+import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.service.HotelService;
 import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.validation.HotelValidator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 public class HotelController {
 
   private final HotelValidator hotelValidator;
-
+  private HotelService hotelService;
 
   public HotelController(final HotelValidator hotelvalidator) {
     this.hotelValidator = hotelvalidator;
