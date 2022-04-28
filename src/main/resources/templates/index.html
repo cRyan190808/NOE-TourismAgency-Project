@@ -4,20 +4,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>NOE Tourismus</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/style.css" th:src="@{css/style.css}">
 </head>
 <body>
 
 <!-- NAVBAR - https://getbootstrap.com/docs/4.0/components/navbar/ -->
 <nav class="navbar navbar-expand-xl navbar-light bg-light">
-    <a class="navbar-brand" href="#">
-        <img src="../images/NOE_LOGO.png" height="120" width="100" />
+    <a class="navbar-brand" href="http://localhost:8080">
+        <img src="../images/NOE_LOGO.png" height="120" width="100" th:src="@{images/NOE_LOGO.png}" />
     </a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -27,61 +26,128 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
             <li class="nav-item active">
-                <a class="nav-link" href="#">Hotels</a>
+                <a class="nav-link" href="http://localhost:8080/home">Home <span class="sr-only">(current)</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8080/hotelform">Hotels</a>
+            </li>
+            <!-- LANGUAGE
+           <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flag-icon flag-icon-us"> </span> English</a>
+               <div class="dropdown-menu" aria-labelledby="dropdown09">
+                   <a class="dropdown-item" href="#fr"><span class="flag-icon flag-icon-fr"> </span>  French</a>
+                   <a class="dropdown-item" href="#it"><span class="flag-icon flag-icon-it"> </span>  Italian</a>
+                   <a class="dropdown-item" href="#ru"><span class="flag-icon flag-icon-ru"> </span>  Russian</a>
+               </div>
+           </li>
+           -->
         </ul>
+        <!--
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-warning" type="submit">Search</button>
+            -->&nbsp;
+            <a href="http://localhost:8080/help" class="btn btn-outline-info" role="button"
+               aria-pressed="true">Help</a>
+        </form>
     </div>
 </nav>
 <!-- NAVBAR - https://getbootstrap.com/docs/4.0/components/navbar/ -->
 
+<!--Ignore for now!
+<h1 th:text="#{title}"></h1>
+<p th:text="#{message}"></p>-->
+
 <table border="1">
     <thead>
     <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Address</th>
-        <th>City</th>
-        <th>Contact</th>
-        <th>URL</th>
-        <th>Family-Friendly</th>
-        <th>Dog-Friendly</th>
-        <th>Spa</th>
-        <th>Fitness</th>
+        <th th:text="#{id}"
+        /td>
+        <th th:text="#{category}"
+        /td>
+        <th th:text="#{name}"
+        /td>
+        <th th:text="#{address}"
+        /td>
+        <th th:text="#{city}"
+        /td>
+        <th th:text="#{contact}"
+        /td>
+        <th th:text="#{url}"
+        /td>
+        <th th:text="#{familyfriendly}"
+        /td>
+        <th th:text="#{dogfriendly}"
+        /td>
+        <th th:text="#{spa}"
+        /td>
+        <th th:text="#{fitness}"
+        /td>
     </tr>
     </thead>
     <tbody>
     <tr th:each="hotel, iStat : ${hotelPage.content}"
         th:style="${iStat.odd}? 'font-weight: bold;'"
         th:alt-title="${iStat.even}? 'even' : 'odd'">
-        <td th:text="${hotel.id}"></td>
-        <td th:text="${hotel.name}"></td>
-        <td th:text="${hotel.address}"></td>
-        <td th:text="${hotel.city}"></td>
-        <td th:text="${hotel.contact}"></td>
-        <td th:text="${hotel.url}"></td>
-        <td th:text="${hotel.familyFriendly} ? 'ja' : 'nein' "/>
-        <td th:text="${hotel.dogFriendly} ? 'ja' : 'nein' "/>
-        <td th:text="${hotel.spa} ? 'ja' : 'nein' "/>
-        <td th:text="${hotel.fitness} ? 'ja' : 'nein' "/>
+        <td th:text="${hotel.id}"/>
+        <td th:text="${hotel.category}"/>
+        <td th:text="${hotel.name}"/>
+        <td th:text="${hotel.address}"/>
+        <td th:text="${hotel.city}"/>
+        <td th:text="${hotel.contact}"/>
+        <td th:text="${hotel.url}"/>
+        <td th:text="${hotel.familyFriendly} ? #{yes} : #{no}"/>
+        <td th:text="${hotel.dogFriendly} ? #{yes} : #{no}"/>
+        <td th:text="${hotel.spa} ? #{yes} : #{no}"/>
+        <td th:text="${hotel.fitness} ? #{yes} : #{no}"/>
     </tr>
     </tbody>
 </table>
 
+<!-- first pagination - among/untereinander
 <div th:if="${hotelPage.totalPages > 0}" class="pagination"
      th:each="pageNumber : ${pageNumbers}">
     <a th:href="@{/index(size=${hotelPage.size}, page=${pageNumber})}"
        th:text=${pageNumber}
-       th:class="${pageNumber==hotelPage.number} ? active">
-    </a>
+       th:class="${pageNumber==hotelPage.number} ? active"></a>
 </div>
+-->
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination" th:if="${hotelPage.totalPages > 0}">
+
+        <a class="page-item" th:each="pageNumber : ${pageNumbers}">
+            <a class="page-link" th:href="@{/index(size=${hotelPage.size}, page=${pageNumber})}"
+            <a th:text=${pageNumber} </a> </a>
+        <a th:class="${pageNumber==hotelPage.number} ? active"></a></li>
+    </ul>
+</nav>
+
+<button type="button" class="btn">
+    <a href="http://localhost:8080/backup" class="btn btn-outline-info" role="button"
+       aria-pressed="true">Backup</a>
+</button>
+
+<!--
+<nav style="margin: auto; letter-spacing:10px" aria-label="Page navigation example">
+    <ul class="pagination">
+        <li th:if="${hotelPage.totalPages > 0}" class="pagination"
+            th:each="pageNumber : ${pageNumbers}">
+            <a class="page-link" th:href="@{/index(size=${hotelPage.size}, page=${pageNumber})}"
+               th:text=${pageNumber}
+               th:class="${pageNumber==hotelPage.number} ? active"></a>
+        </li>
+    </ul>
+</nav>
+-->
 
 <nav class="navbar fixed-bottom navbar-light bg-light">
-    <a style="color: black" class="navbar-brand" href="#!"> Version: 0.3 </a>
+    <a style="color: black" class="navbar-brand" href="#!" th:text="#{version}"/></a>
 </nav>
+
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 </body>
 </html>

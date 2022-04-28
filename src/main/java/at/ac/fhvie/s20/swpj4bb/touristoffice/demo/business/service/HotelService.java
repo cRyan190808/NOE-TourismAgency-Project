@@ -407,7 +407,7 @@ public class HotelService {
   /**
    * Dump the data as SQL file
    */
-  private void exportDatabase() {
+  public void exportDatabase() {
     DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
     Date date = new Date();
 

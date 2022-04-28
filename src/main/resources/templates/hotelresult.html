@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Thymeleaf Form Result</title>
+    <title>Hotel Result</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,8 +16,8 @@
 
 <!-- NAVBAR - https://getbootstrap.com/docs/4.0/components/navbar/ -->
 <nav class="navbar navbar-expand-xl navbar-light bg-light">
-    <a class="navbar-brand" href="#">
-        <img src="../images/NOE_LOGO.png" height="120" width="100" />
+    <a class="navbar-brand" href="http://localhost:8080">
+        <img src="../images/NOE_LOGO.png" height="120" width="100" th:src="@{images/NOE_LOGO.png}" />
     </a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -28,21 +28,25 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="http://localhost:8080/home">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Hotels</a>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8080/hotelform">Hotels</a>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8080/help">Help</a>
             </li>
         </ul>
     </div>
 </nav>
 <!-- NAVBAR - https://getbootstrap.com/docs/4.0/components/navbar/ -->
 
+
 <!-- Text must be enclosed in single quotes!!! -->
 <p style="width: 500px; margin: auto" th:text="'Here you have the data'" />
 
-<p th:text= "'Hotel name: ' + ${command.name}" />
+<p style="width: 500px; margin: auto" th:text= "'Hotel name: ' + ${command.name}" />
 <p th:text= "'Textarea Value: ' + ${command.owner}" />
+<p th:text= "'Textarea Value: ' + ${command.category}" />
 <p th:text= "'Datetime Value: ' + ${command.contact}" />
 <p th:text= "'Color Value: ' + ${command.address}" />
 <p th:text= "'Single Checkbox Value: ' + ${command.city}" />
@@ -52,5 +56,12 @@
 <p th:text= "'Dropdown Value: ' + ${command.noBeds}" />
 
 <a href="/fooform">resubmit form</a>
+
+
+
+<nav class="navbar fixed-bottom navbar-light bg-light">
+    <a style="color: black" class="navbar-brand" href="#!" th:text="#{version}"/></a>
+</nav>
+
 </body>
 </html>

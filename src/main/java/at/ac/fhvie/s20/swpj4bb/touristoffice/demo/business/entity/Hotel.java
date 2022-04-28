@@ -1,6 +1,7 @@
 package at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.entity;
 
 import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.constants.Category;
+
 import lombok.*;
 
 import javax.persistence.Column;
@@ -15,11 +16,13 @@ import javax.persistence.Id;
 
 
 @Entity
+
 // The @Data annotation is important for the web form. Without this annotation a web form
 // won't work!!!!!!
 @Data
+
 // The following annotations are for Lombok that we do not have to create the Getters,
-// a constructor with all arguments, a constructor with no arguments and a toString() Methods
+// a constructor with all arguments, a constructor with no arguments and a toString() methods
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -82,6 +85,7 @@ public final class Hotel {
     this.fitness = other.fitness;
     return this;
   }
+
 
   public static class HotelBuilder {
     private int id;
@@ -170,31 +174,26 @@ public final class Hotel {
       return this;
     }
 
-    @SuppressWarnings("checkstyle:hiddenField")
     public HotelBuilder url(final String url) {
       this.url = url;
       return this;
     }
 
-    @SuppressWarnings("checkstyle:hiddenField")
     public HotelBuilder familyFriendly(final String familyFriendly) {
       this.familyFriendly = familyFriendly;
       return this;
     }
 
-    @SuppressWarnings("checkstyle:hiddenField")
     public HotelBuilder dogFriendly(final String dogFriendly) {
       this.dogFriendly = dogFriendly;
       return this;
     }
 
-    @SuppressWarnings("checkstyle:hiddenField")
     public HotelBuilder spa(final String spa) {
       this.spa = spa;
       return this;
     }
 
-    @SuppressWarnings("checkstyle:hiddenField")
     public HotelBuilder fitness(final String fitness) {
       this.fitness = fitness;
       return this;
@@ -211,8 +210,37 @@ public final class Hotel {
           + ", contact=" + this.contact + ", address=" + this.address + ", city="
           + this.city + ", cityCode=" + this.cityCode + ", phone=" + this.phone
           + ", noRooms=" + this.noRooms + ", noBeds=" + this.noBeds
-          + ", url= " + this.url + ", familyFriendly" + this.familyFriendly
-          + ",dogFriendly" + this.dogFriendly + ", spa" + this.spa + ", fitness" + this.fitness + ")";
+          +", url= " + this.url + ", familyFriendly" + this.familyFriendly + ", dogFriendly"
+          + this.dogFriendly + ", spa" + this.spa + ", fitness" + this.fitness + ")";
     }
   }
+
+  public void setCategory(final Category category) {
+    this.category = category;
+  }
+
+  public void checkBoxToString() {
+    if (this.dogFriendly != null && this.dogFriendly.equals("on")) {
+      this.dogFriendly = "true";
+    } else {
+      this.dogFriendly = "false";
+    }
+    if (this.spa != null &&  this.spa.equals("on")) {
+      this.spa = "true";
+    } else {
+      this.spa = "false";
+    }
+    if (this.fitness != null && this.fitness.equals("on")) {
+      this.fitness = "true";
+    } else {
+      this.fitness = "false";
+    }
+    if (this.familyFriendly != null && this.familyFriendly.equals("on")) {
+      this.familyFriendly = "true";
+    } else {
+      this.familyFriendly = "false";
+    }
+
+  }
+
 }

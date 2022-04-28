@@ -3,8 +3,8 @@ package at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.validation;
 import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.entity.Hotel;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList; // Note Christopher:
-                            // Reference to ui/main_menu/controller/MainMenuController Row100
+import java.util.ArrayList;
+
 /**
  * Validation class for the Hotel class
  */
@@ -19,7 +19,7 @@ public class HotelValidator extends ValidationSupport implements Validator<Hotel
   @Override
   public ArrayList<String> validate(final Hotel hotel) {
     ArrayList<String> errors = new ArrayList<>();
-    String error = "";
+    //String error = "";
 
     if (isNullOrEmptyString(hotel.getName())) {
       errors.add(nameExceptionMessage());
@@ -49,7 +49,7 @@ public class HotelValidator extends ValidationSupport implements Validator<Hotel
     }
 
     if (isLessEqualZero(hotel.getNoRooms())) {
-      errors.add(bedExceptionMessage(hotel.getNoRooms()));
+      errors.add(roomExceptionMessage(hotel.getNoRooms()));
     }
 
     // Maybe it is not so optimal that a String with all the error messages in one single String is returned.
@@ -63,7 +63,7 @@ public class HotelValidator extends ValidationSupport implements Validator<Hotel
   }
 
   private String ownerExceptionMessage() {
-    return "Owner darf nicht leer sein";
+    return "Owner darf nicht leer sein\n";
   }
 
   private String contactExceptionMessage() {

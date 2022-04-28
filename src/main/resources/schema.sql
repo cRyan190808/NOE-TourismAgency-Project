@@ -16,13 +16,12 @@ CREATE TABLE hotel
   city    TEXT NOT NULL,
   zip     TEXT NOT NULL,
   phone   TEXT NOT NULL,
-  rooms   int  not null,
-  beds    int  not null,
-  url tinyint not null,
-  family_friendly tinyint not null,
-  dog_friendly tinyint not null,
-  spa tinyint not null,
-  fitness tinyint not null
-
+  rooms   int  NOT NULL,
+  beds    int  NOT NULL,
+  url     TEXT NOT NULL,
+  family_friendly boolean NOT NULL,
+  dog_friendly boolean NOT NULL,
+  spa     boolean NOT NULL,
+  fitness boolean NOT NULL
 );
 

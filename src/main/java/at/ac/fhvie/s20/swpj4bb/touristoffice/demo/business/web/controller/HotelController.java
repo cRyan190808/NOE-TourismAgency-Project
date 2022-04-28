@@ -1,13 +1,16 @@
 package at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.web.controller;
 
+import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.constants.Category;
 import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.entity.Hotel;
 import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.service.HotelService;
 import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.validation.HotelValidator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.converter.CategoryConverter;
 
 import java.util.ArrayList;
 
@@ -16,22 +19,26 @@ public class HotelController {
 
   private final HotelValidator hotelValidator;
   private HotelService hotelService;
+  private static int tempCategory;
 
-  public HotelController(final HotelValidator hotelvalidator) {
+  @Autowired
+  public HotelController(final HotelValidator hotelvalidator, final HotelService hotelService) {
     this.hotelValidator = hotelvalidator;
+    this.hotelService = hotelService;
   }
 
   // Here the form is called and the template is provided with an empty Hotel Instance
   @GetMapping("/hotelform")
   public String fooForm(Model model) {
     model.addAttribute("command", new Hotel());
+    model.addAttribute("tempCategory", tempCategory);
 
     return "hotelform";
   }
 
 
   // After submitting the Hotel form here is the entry point for the form POST where the form is validated
-  // If there is an error the hotel entry form is presented once again with additional error infomation
+  // If there is an error the hotel entry form is presented once again with additional error information
   // If there is no error the page is redirected to an output page
   @PostMapping("/hotelform")
   public String hotelPost(
@@ -40,7 +47,11 @@ public class HotelController {
       // https://stackoverflow.com/a/29883178/1626026
       BindingResult bindingResult,
       Model model,
-      RedirectAttributes ra) {
+      RedirectAttributes ra,
+      @RequestParam(value = "tempCategory") int tempCategory) {
+      command.setCategory(new CategoryConverter().convertToEntityAttribute(tempCategory));
+
+      command.checkBoxToString();
 
     // bindingResult is for a certain kind of data validation and not used in this example.
     // The RedirectAttributes are similar to Attributes but witht he difference that the values are
@@ -59,12 +70,14 @@ public class HotelController {
       // (Swing/Web/App) but it has to be formatted later. A possibility could be in a Factory Pattern where you
       // provide the data and request a certain format and receive a formatted String.
       // So the Factory is responsible for the correct formatting. And further formats are only implemented in that Factory.
+
       model.addAttribute("error", errors);
+
       //model.addAttribute("command", command);
       return "hotelform";
     }
 
-
+    hotelService.save(command);
     ra.addFlashAttribute("command", command);
 
     // Redirect to the output page. The hotel data is stored in an FlashAttribute which is maintained in the session

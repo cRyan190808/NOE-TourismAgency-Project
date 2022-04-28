@@ -36,10 +36,10 @@ public class MainController {
     int currentPage = page.orElse(1);
     // Yes, i know. A hardcoded default page size of two items. Just for demonstration
     // purposes
-    int pageSize = size.orElse(10);
+    int pageSize = size.orElse(8);
 
     // Retrieve all Hotels from database. Just mentioned here how to do it.
-    // Not of relevance here but I thougt it would be nice to show how to retrieve all
+    // Not of relevance here but I thought it would be nice to show how to retrieve all
     // records
     // List<Hotel> hotels = hotelService.findAllOrderedById();
 
@@ -57,6 +57,13 @@ public class MainController {
       model.addAttribute("pageNumbers", pageNumbers);
     }
     return "index";
+  }
+
+  @GetMapping("/backup")
+  public String backup() {
+    hotelService.exportDatabase();
+
+    return "redirect:/index";
   }
 
 }

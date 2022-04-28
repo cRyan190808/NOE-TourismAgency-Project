@@ -6,12 +6,16 @@ h2 {
     color: #FF0000;
 }
 
+h3  {
+    color: aqua;
+}
+
 table {
     border-collapse: collapse;
 }
 
 table th, table td {
-    padding: 6px;
+    padding: 5px;
 }
 
 .nav-link {

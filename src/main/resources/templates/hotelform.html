@@ -16,8 +16,8 @@
 
 <!-- NAVBAR - https://getbootstrap.com/docs/4.0/components/navbar/ -->
 <nav class="navbar navbar-expand-xl navbar-light bg-light">
-    <a class="navbar-brand" href="#">
-        <img src="../images/NOE_LOGO.png" height="120" width="100" />
+    <a class="navbar-brand" href="http://localhost:8080">
+        <img src="../images/NOE_LOGO.png" height="120" width="100" th:src="@{images/NOE_LOGO.png}" />
     </a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -28,62 +28,85 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="http://localhost:8080/home">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="#">Hotels</a>
+                <a class="nav-link" href="http://localhost:8080/hotelform">Hotels</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8080/fooform">Fooform</a>
+            </li>
+            <!-- LANGUAGE
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flag-icon flag-icon-us"> </span> English</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown09">
+                    <a class="dropdown-item" href="#fr"><span class="flag-icon flag-icon-fr"> </span>  French</a>
+                    <a class="dropdown-item" href="#it"><span class="flag-icon flag-icon-it"> </span>  Italian</a>
+                    <a class="dropdown-item" href="#ru"><span class="flag-icon flag-icon-ru"> </span>  Russian</a>
+                </div>
+            </li>
+            -->
         </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-warning" type="submit">Search</button>
+            &nbsp;
+            <a href="http://localhost:8080/help" class="btn btn-outline-info" role="button"
+               aria-pressed="true">Help</a>
+        </form>
     </div>
 </nav>
 <!-- NAVBAR - https://getbootstrap.com/docs/4.0/components/navbar/ -->
 
 <!-- Text must be enclosed in single quotes!!! -->
-<p th:text="'Add new Hotel'" />
+<p style="width: 500px; margin: auto" th:text="#{addnewhotel}"></p>
 
 <!-- Display a possible error text -->
-<div  th:if="${error != null }" th:text="${error}">
-    <p th:text="'Error: ' + ${error}" />
+<div  class="alert alert-warning" role="alert" th:if="${error != null }" th:text="${error}">
+    <p th:text="'Error: ' + ${error}"></p>
 </div>
 
 <!-- Form Controls -  https://getbootstrap.com/docs/5.0/forms/form-control/ -->
 <form style="width: 400px; margin: auto" th:action="@{/hotelform}" th:object="${command}" method="post">
-    <p>Hotel name: <input class="form-control" type="text" placeholder="e.g. Hotel Muster" th:field="*{name}" /></p>
-    <p>Owner: <input class="form-control" type="text" placeholder="e.g. Mika Muster" th:field="*{owner}" /></p>
-    <p>Contact: <input class="form-control" type="text" placeholder="e.g. Elia Somebody" th:field="*{contact}" /></p>
-    <p>Address: <input class="form-control" type="text" placeholder="e.g. Muster-Platz 1" th:field="*{address}" /></p>
-    <p>City: <input class="form-control" type="text" placeholder="e.g. Musterstadt" th:field="*{city}" /></p>
+    <p th:text="#{hotelname}+ ':'"/> <input class="form-control" type="text" placeholder="e.g. Hotel Muster" th:field="*{name}" /></p>
+    <p th:text="#{category}+ ':'"/> <input class="form-control" type="number" placeholder="e.g. Number" th:field="*{stars}" /></p>
+    <p th:text="#{owner}+ ':'"/> <input class="form-control" type="text" placeholder="e.g. Mika Muster" th:field="*{owner}" /></p>
+    <p th:text="#{contact}+ ':'"/> <input class="form-control" type="text" placeholder="e.g. Elia Somebody" th:field="*{contact}" /></p>
+    <p th:text="#{address}+ ':'"/> <input class="form-control" type="text" placeholder="e.g. Muster-Platz 1" th:field="*{address}" /></p>
+    <p th:text="#{city}+ ':'"/> <input class="form-control" type="text" placeholder="e.g. Musterstadt" th:field="*{city}" /></p>
     <!-- Beware : The field name is case sensitive!!! It has to be named exactly as it is in the class!!! -->
-    <p>City Code: <input class="form-control" type="text" placeholder="e.g. 2345" th:field="*{cityCode}" /></p>
-    <p>Phone Number: <input class="form-control" type="text" placeholder="e.g. +43 222 123456" th:field="*{phone}" /></p>
+    <p th:text="#{citycode}"/> <input class="form-control" type="text" placeholder="e.g. 2345" th:field="*{cityCode}" /></p>
+    <p th:text="#{phone}"/> <input class="form-control" type="text" placeholder="e.g. +43 222 123456" th:field="*{phone}" /></p>
     <!-- The same with the room and bed count! Try to change noRooms to rooms and you will see that IntelliJ underlines the
     // name. This is an indication that something is wrong-->
+
+    <p th:text="#{url}+ ':'"/> <input class="form-control" type="url" th:field="*{url}"/></p>
 
     <div class="row">
         <div class="col">
             <div class="form-group">
-                <p>Number of Rooms: <input class="form-control" type="number" th:field="*{noRooms}"/></p>
+                <p th:text="#{numberofrooms}+ ':'"/> <input class="form-control" type="number" th:field="*{noRooms}"/> </p>
             </div>
         </div>
         <div class="col">
             <div class="form-group">
-                <p>Number of Beds: <input class="form-control" type="number" th:field="*{noBeds}"/></p>
+                <p th:text="#{numberofbeds}+ ':'"/> <input class="form-control" type="number" th:field="*{noBeds}"/> </p>
             </div>
         </div>
     </div>
 
-    <p>Features: </p>
+    <p th:text="#{features}+ ':'"/> </p>
     <div class="row">
         <div class="col">
             <div class="form-group">
                 <div>
                     <input type="checkbox" id="familyFriendly" name="familyFriendly">
-                    <label th:field="*{familyFriendly}">Family Friendly</label>
+                    <label for="familyFriendly" th:field="*{familyFriendly}"> th:text="#{familyfriendly}"/> </label>
                 </div>
 
                 <div>
                     <input type="checkbox" id="dogFriendly" name="dogFriendly">
-                    <label th:field="*{dogFriendly}">Dog Friendly</label>
+                    <label for="dogFriendly" th:field="*{dogFriendly}"> th:text="#{dogfriendly}"/> </label>
                 </div>
             </div>
         </div>
@@ -92,24 +115,27 @@
             <div class="form-group">
                 <div>
                     <input type="checkbox" id="spa" name="spa">
-                    <label for="spa" th:field="*{spa}">Spa</label>
+                    <label for="spa" th:field="*{spa}"> th:text="#{spa}"/> </label>
                 </div>
 
                 <div>
                     <input type="checkbox" id="fitness" name="fitness">
-                    <label for="fitness" th:field="*{fitness}">Fitness</label>
+                    <label for="fitness" th:field="*{fitness}"> th:text="#{fitness}"/> </label>
                 </div>
             </div>
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
-    <button type="reset" class="btn btn-secondary">Reset</button>
+    <button type="submit" class="btn btn-primary" th:text="#{submit}"/> </button>
+    <button type="reset" class="btn btn-secondary" th:text="#{reset}"/> </button>
+<br>
+<br>
+<br>
 
 </form>
 
 <nav class="navbar fixed-bottom navbar-light bg-light">
-    <a style="color: black" class="navbar-brand" href="#!"> Version: 0.3 </a>
+    <a style="color: black" class="navbar-brand" href="#!" th:text="#{version}"/></a>
 </nav>
 
 </body>
