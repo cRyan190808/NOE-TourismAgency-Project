@@ -19,7 +19,13 @@ table th, table td {
 }
 
 .nav-link {
+    cursor: pointer;
     font-size: 24px;
+}
+
+.nav-link:active
+.nav-link:hover {
+    color: dodgerblue !important;
 }
 
 .pages {
@@ -27,3 +33,4 @@ table th, table td {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+

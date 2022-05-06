@@ -25,3 +25,15 @@ CREATE TABLE hotel
   fitness boolean NOT NULL
 );
 
+DROP TABLE IF EXISTS occupancy;
+/*==============================================================*/
+/* Table: occupancy                                               */
+/*==============================================================*/
+CREATE TABLE occupancy
+(
+    category TEXT NOT NULL,
+    roomCount int NOT NULL,
+    roomUtilization double NOT NULL,
+    bedCount int NOT NULL,
+    bedUtilization double NOT NULL
+);
