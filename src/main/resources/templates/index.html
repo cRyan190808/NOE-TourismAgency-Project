@@ -9,12 +9,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../static/css/style.css" th:src="@{css/style.css}">
+    <link rel="stylesheet" href="css/style.css" th:src="@{css/style.css}">
 </head>
 <body>
 
 <!-- NAVBAR - https://getbootstrap.com/docs/4.0/components/navbar/ -->
-<nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+<nav class="navbar navbar-expand-xl">
     <a class="navbar-brand" href="http://localhost:8080">
         <img src="../static/images/NOE_LOGO.png" height="120" width="100" th:src="@{images/NOE_LOGO.png}" />
     </a>
@@ -26,16 +26,9 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="http://localhost:8080/home">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8080/hotelform">Hotels</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8080/fooform">Fooform</a>
-            </li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hotelform.html">Hotel</a></li>
+            <li><a href="hotellist.html">Hotelliste</a> </li>
 
 
             <!-- LANGUAGE prepare
@@ -65,7 +58,7 @@
 <h1 th:text="#{title}"></h1>
 <p th:text="#{message}"></p>-->
 
-<table border="1">
+<!--<table border="1">
     <thead>
     <tr>
         <th th:text="#{id}"
@@ -109,7 +102,7 @@
         <td th:text="${hotel.fitness} ? #{yes} : #{no}"/>
     </tr>
     </tbody>
-</table>
+</table> --->
 
 <!-- first pagination - among/untereinander
 <div th:if="${hotelPage.totalPages > 0}" class="pagination"
@@ -120,7 +113,7 @@
 </div>
 -->
 
-<nav aria-label="Page navigation example">
+<!--- <nav aria-label="Page navigation example">
     <ul class="pagination" th:if="${hotelPage.totalPages > 0}">
 
         <a class="page-item" th:each="pageNumber : ${pageNumbers}">
@@ -128,7 +121,21 @@
             <a th:text=${pageNumber} </a> </a>
         <a th:class="${pageNumber==hotelPage.number} ? active"></a></li>
     </ul>
-</nav>
+</nav>---->
+
+<main class="site-content" id="content">
+    <h4>Willkommen auf unserer Seite</h4>
+    <h5>Auf unsere Seite können Sie....</h5>
+
+    <!--- Inhalt der Seite --->
+</main>
+<figure>
+    <img src="images/OIP.jpg"
+         alt="Bild"
+         width="800"
+         height="500">
+         <figcaption></figcaption>
+</figure>
 
 <button type="button" class="btn">
     <a href="http://localhost:8080/backup" class="btn btn-outline-info" role="button"
@@ -147,10 +154,20 @@
     </ul>
 </nav>
 -->
-
+<!---
 <nav class="navbar fixed-bottom navbar-light bg-light">
     <a style="color: black" class="navbar-brand" href="#!" th:text="#{version}"/></a>
-</nav>
+</nav> ---->
+
+<footer class="site-footer">
+    <nav class="meta-nav">
+        <ul>
+            <li><a href="impressum.html">Impressum</a></li>
+            <li><a href="datebschutz.html">Datenschutz</a></li>
+            <li><a href="#top">Nach oben</a></li>
+        </ul>
+    </nav>
+</footer>
 
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
