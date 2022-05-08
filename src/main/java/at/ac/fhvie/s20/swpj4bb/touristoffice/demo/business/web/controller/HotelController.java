@@ -97,24 +97,5 @@ public class HotelController {
     return "hotelresult";
   }
 
-/*
-private static Category convertToCategory(final int value) {
-    if (value == 1) {
-      return Category.ONE;
-    }
-    if (value == 2) {
-      return Category.TWO;
-    }
-    if (value == 3) {
-      return Category.THREE;
-    }
-    if (value == 4) {
-      return Category.FOUR;
-    }
-    if (value == 5) {
-      return Category.FIVE;
-    }
-    throw new IllegalArgumentException("Zahl zwischen eins und fünf für Sterne");
-  }
-*/
+
 }
