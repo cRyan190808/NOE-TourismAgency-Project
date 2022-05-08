@@ -97,7 +97,8 @@ public class HotelController {
     return "hotelresult";
   }
 
-  private static Category convertToCategory(final int value) {
+/*
+private static Category convertToCategory(final int value) {
     if (value == 1) {
       return Category.ONE;
     }
@@ -115,5 +116,5 @@ public class HotelController {
     }
     throw new IllegalArgumentException("Zahl zwischen eins und fünf für Sterne");
   }
-
+*/
 }
