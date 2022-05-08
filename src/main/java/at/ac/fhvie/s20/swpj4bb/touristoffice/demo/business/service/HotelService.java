@@ -429,7 +429,12 @@ public class HotelService {
       sql += "'" + hotel.getCityCode() + "', ";
       sql += "'" + hotel.getPhone() + "', ";
       sql += "" + hotel.getNoRooms() + ", ";
-      sql += "" + hotel.getNoBeds() + ");\n";
+      sql += "" + hotel.getNoBeds() + ", ";
+      sql += "'" + hotel.getUrl() + "', ";
+      sql += "" + hotel.getFamilyFriendly() + ", ";
+      sql += "" + hotel.getDogFriendly() + ", ";
+      sql += "" + hotel.getSpa() + ", ";
+      sql += "" + hotel.getFitness() + ");\n";
     }
 
     // Write the SQL string to the file system
