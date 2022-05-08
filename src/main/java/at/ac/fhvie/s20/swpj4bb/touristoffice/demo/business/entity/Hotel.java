@@ -116,7 +116,6 @@ public final class Hotel {
       return this;
     }
 
-    @SuppressWarnings("checkstyle:hiddenField")
     public HotelBuilder category(final Category category) {
       this.category = category;
       return this;
