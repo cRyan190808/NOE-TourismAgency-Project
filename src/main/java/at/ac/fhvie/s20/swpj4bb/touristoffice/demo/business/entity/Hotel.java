@@ -54,8 +54,10 @@ public final class Hotel {
   // Mapping between database field and variable
   @Column(name = "beds")
   private int noBeds;
+
   @Column(name = "family_friendly")
   private String familyFriendly;
+
   @Column(name = "dog_friendly")
   private String dogFriendly;
 

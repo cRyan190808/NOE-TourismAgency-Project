@@ -8,5 +8,3 @@ INSERT INTO HOTEL VALUES (0, 0, 'Zum güldenen Hirsch', 'Harry Hirsch', 'Susi', 
                           'A-0815', '1234', 5, 50, 'www.zumgueldenenhirsch.at', false, false, true, true);
 INSERT INTO HOTEL VALUES (4, 3, 'Das ABC', 'Il. Literat', 'der böse Wolf', 'Heinzelmännchenweg 3', 'Buchstaben',
                           'A-BCDEF', '9876', 2, 2, 'www.das-abc.at', false, true, false, false);
-
-
