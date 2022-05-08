@@ -10,13 +10,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdNOE_LOGO.pngnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <!-- NAVBAR - https://getbootstrap.com/docs/4.0/components/navbar/ -->
 
- <nav class="navbar navbar-expand-xl navbar-light bg-light">
+ <nav class="navbar navbar-expand-xl navbar-light">
     <a class="navbar-brand" href="http://localhost:8080">
         <img src="../static/images/NOE_LOGO.png" height="120" width="100" th:src="@{images/NOE_LOGO.png}" />
     </a>
@@ -29,13 +29,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8080/home">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="http://localhost:8080/index">Home</a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="http://localhost:8080/hotelform">Hotels</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8080/fooform">fooform</a>
+                <a class="nav-link" href="http://localhost:8080/hotellist">Hotelliste</a>
             </li>
 
             <!-- LANGUAGE
@@ -64,10 +64,29 @@
 <!-- Text must be enclosed in single quotes!!! -->
 <p style="width: 500px; margin: auto" th:text="#{addnewhotel}"></p>
 
-<!-- Display a possible error text -->
+<!-- Display a possible error text
 <div  class="alert alert-warning" role="alert" th:if="${error != null }" th:text="${error}">
     <p th:text="'Error: ' + ${error}"></p>
-</div>
+</div> -->
+<section class="container" id="alerts">
+    <if th:if="${error == null }">
+        <div class="alert alert-success" role="alert">
+            Hotel hinzugefügt!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">x</span>
+            </button>
+        </div>
+    </if>
+    <if th:if="${error != null }">
+        <div class="alert alert-danger" role="alert" >
+            Fehler beim Hinzufügen des Hotels!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">x</span>
+            </button>
+        </div>
+    </if>
+
+</section>
 
 <!-- Form Controls -  https://getbootstrap.com/docs/5.0/forms/form-control/ -->
 <form style="width: 400px; margin: auto" th:action="@{/hotelform}" th:object="${command}" method="post">
@@ -93,7 +112,7 @@
         </div>
         <div class="col">
             <div class="form-group">
-                <p th:text="#{numberofbeds}+ ':'"/> <input class="form-control" type="number" placeholder="0 Bette"  th:field="*{noBeds}"/> </p>
+                <p th:text="#{numberofbeds}+ ':'"/> <input class="form-control" type="number" placeholder="0 Betten"  th:field="*{noBeds}"/> </p>
             </div>
         </div>
     </div>
@@ -129,17 +148,37 @@
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary" th:text="#{submit}"/> </button>
-    <button type="reset" class="btn btn-secondary" th:text="#{reset}"/> </button>
+    <button>
+        <a href="http://localhost:8080/hotellist" class="btn btn-outline-info" role="button"
+           aria-pressed="true">Submit
+        </a>
+    </button>
+
+    <button>
+        <a href="http://localhost:8080/hotelform" class="btn btn-outline-info" role="button"
+           aria-pressed="true">Reset
+        </a>
+    </button>
 <br>
 <br>
 <br>
 
 </form>
 
+<footer class="site-footer">
+    <nav class="meta-nav">
+        <ul>
+            <li><a href="impressum.html">Impressum</a></li>
+            <li><a href="datebschutz.html">Datenschutz</a></li>
+            <li><a href="#top">Nach oben</a></li>
+        </ul>
+    </nav>
+</footer>
+
+<!----
 <nav class="navbar fixed-bottom navbar-light bg-light">
     <a style="color: black" class="navbar-brand" href="#!" th:text="#{version}"/></a>
-</nav>
+</nav> --->
 
 </body>
 </html>
