@@ -10,6 +10,15 @@ h3  {
     color: aqua;
 }
 
+h4 {
+    color: black;
+    front: bold;
+}
+
+h5 {
+    color: black;
+}
+
 table {
     border-collapse: collapse;
 }
@@ -20,7 +29,7 @@ table th, table td {
 
 .nav-link {
     cursor: pointer;
-    font-size: 24px;
+    font-size: 20px;
 }
 
 .nav-link:active
@@ -28,9 +37,87 @@ table th, table td {
     color: dodgerblue !important;
 }
 
+nav li {
+    display: inline;
+    margin-right: 0.5rem;
+    front-size:20px;
+}
+
+nav {
+    background-color: gold;
+    color: white;
+    padding: 0.5rem;
+    margin: 1rem 0;
+}
+
+nav ul {
+    padding: 0;
+    margin: 0;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+footer {
+    background-color: gold;
+    color: white;
+    text-align: right;
+    padding: 0.5rem;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+figure{
+    text-align: center;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+main {
+    text-align: left;
+}
+
+button {
+    background-color: gray;
+    color: white;
+    padding: 0.5rem;
+    border: none;
+    font-size: inherit;
+    cursor: pointer;
+}
+
+form{
+    max-width: 1000px;
+    background-color: whitesmoke;
+    padding: 2rem;
+}
+
+div{
+    margin-bottom: 1rem;
+}
+
+label {
+    cursor: pointer;
+    display: block;
+}
+
+.meta-nav ul {
+    margin: 0;
+}
+
+.meta-nav li{
+    display: inline;
+    margin-right: 0.5rem;
+}
 .pages {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+
 
