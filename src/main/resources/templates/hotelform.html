@@ -100,8 +100,8 @@
     <p th:text="#{address}+ ':'"/> <input class="form-control" type="text" placeholder="Adresse" th:field="*{address}" /></p>
     <p th:text="#{city}+ ':'"/> <input class="form-control" type="text" placeholder="Stadt" th:field="*{city}" /></p>
     <!-- Beware : The field name is case sensitive!!! It has to be named exactly as it is in the class!!! -->
-    <p th:text="#{citycode}"/> <input class="form-control" type="text" placeholder="PLZ" th:field="*{cityCode}" /></p>
-    <p th:text="#{phone}"/> <input class="form-control" type="text" placeholder="Telefon" th:field="*{phone}" /></p>
+    <p th:text="#{citycode}+':'"/> <input class="form-control" type="text" placeholder="PLZ" th:field="*{cityCode}" /></p>
+    <p th:text="#{phone}+':'"/> <input class="form-control" type="text" placeholder="Telefon" th:field="*{phone}" /></p>
     <!-- The same with the room and bed count! Try to change noRooms to rooms and you will see that IntelliJ underlines the
     // name. This is an indication that something is wrong-->
 

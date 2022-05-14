@@ -9,14 +9,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../static/css/style.css" th:src="@{css/style.css}">
+    <link rel="stylesheet" href="css/style.css" th:src="@{css/style.css}">
 </head>
 <body>
 
 <!-- NAVBAR - https://getbootstrap.com/docs/4.0/components/navbar/ -->
-<nav class="navbar navbar-expand-xl navbar-light bg-light">
+<nav class="navbar navbar-expand-xl">
     <a class="navbar-brand" href="http://localhost:8080">
-        <img src="../static/images/NOE_LOGO.png" height="120" width="100" th:src="@{images/NOE_LOGO.png}" />
+        <img src="images/NOE_LOGO.png" height="120" width="100" th:src="@{images/NOE_LOGO.png}" />
     </a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -26,23 +26,31 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8080/home">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item active">
+                <a class="nav-link" href="http://localhost:8080/index">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="http://localhost:8080/hotelform">Hotels</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8080fooform">Fooform</a>
+                <a class="nav-link" href="http://localhost:8080/hotellist">Hotelliste</a>
             </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="http://localhost:8080/occupancy">Belegung</a>
+            </li>
+
+
         </ul>
+        <!--
         <form class="form-inline my-2 my-lg-0">
             <!--
             <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-warning" type="submit">Search</button>
             -->&nbsp;
+            <!--
             <a href="http://localhost:8080/help" class="btn btn-outline-info" role="button"
                aria-pressed="true">Help</a>
+            -->
             <!-- LANGUAGE
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flag-icon flag-icon-us"> </span> English</a>
@@ -103,10 +111,15 @@
         </div>
     </div>
 </div>
-
-<nav class="navbar fixed-bottom navbar-light bg-light">
-    <a style="color: black" class="navbar-brand" href="#!" th:text="#{version}"/></a>
-</nav>
-
+<footer class="site-footer">
+    <nav class="meta-nav">
+        <ul>
+            <li><a href="http://localhost:8080/impressum">Impressum</a></li>
+            <li><a href="http://localhost:8080/datenschutz">Datenschutz</a></li>
+            <li><a href="#top">Nach oben</a></li>
+        </ul>
+        <a style="color: white" class="navbar-brand" href="#!" th:text="#{version}"/></a>
+    </nav>
+</footer>
 </body>
 </html>
