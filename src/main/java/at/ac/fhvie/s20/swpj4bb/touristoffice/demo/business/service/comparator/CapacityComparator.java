@@ -1,5 +1,6 @@
 package at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.service.comparator;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
 import static at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.service.HotelService.TOTAL;
@@ -7,7 +8,8 @@ import static at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.service.HotelS
 /**
  * Class for comparing capacities
  */
-public class CapacityComparator implements Comparator<String> {
+public class CapacityComparator implements Comparator<String>, Serializable {
+  private static final long serialVersionUID = 1;
   @Override
   public int compare(final String left, final String right) {
 
