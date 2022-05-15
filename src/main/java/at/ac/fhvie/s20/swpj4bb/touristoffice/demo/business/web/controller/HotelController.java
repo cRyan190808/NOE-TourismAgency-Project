@@ -19,7 +19,7 @@ public class HotelController {
 
   private final HotelValidator hotelValidator;
   private HotelService hotelService;
-  //private static int tempCategory;
+  private static int tempCategory;
 
   @Autowired
   public HotelController(final HotelValidator hotelvalidator, final HotelService hotelService) {
@@ -31,7 +31,8 @@ public class HotelController {
   @GetMapping("/hotelform")
   public String fooForm(Model model) {
     model.addAttribute("command", new Hotel());
-    //model.addAttribute("tempCategory", tempCategory);
+    model.addAttribute("tempCategory", tempCategory);
+    model.addAttribute("activePage", "hotelform");
 
     return "hotelform";
   }
@@ -96,6 +97,5 @@ public class HotelController {
 
     return "hotelresult";
   }
-
 
 }
