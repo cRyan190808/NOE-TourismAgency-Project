@@ -1,5 +1,5 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <div th:replace="fragments/header :: header"></div>
 
@@ -7,20 +7,6 @@
 
 <div th:replace="fragments/navbar :: navbar"></div>
 
-<!-- Text must be enclosed in single quotes!!! -->
-<p style="width: 500px; margin: auto" th:text="'Daten wurden erfolgreich hinzugefügt!'" />
-<!--
-<p style="width: 500px; margin: auto" th:text= "'Hotel name: ' + ${command.name}" />
-<p th:text= "'Textarea Value: ' + ${command.owner}" />
-<p th:text= "'Textarea Value: ' + ${command.category}" />
-<p th:text= "'Datetime Value: ' + ${command.contact}" />
-<p th:text= "'Color Value: ' + ${command.address}" />
-<p th:text= "'Single Checkbox Value: ' + ${command.city}" />
-<p th:text= "'Checkbox Value: ' + ${command.cityCode}" />
-<p th:text= "'Dropdown Value: ' + ${command.phone}" />
-<p th:text= "'Checkbox Value: ' + ${command.noRooms}" />
-<p th:text= "'Dropdown Value: ' + ${command.noBeds}" />
--->
 <table border="1">
     <thead>
     <tr>
@@ -44,22 +30,22 @@
     </thead>
     <tbody>
     <tr>
-    <td th:text="${command.id}"></td>
-    <td th:text="${command.owner}"></td>
-    <td th:text="${command.category}"></td>
-    <td th:text="${command.name}"></td>
-    <td th:text="${command.address}"></td>
-    <td th:text="${command.city}"></td>
-    <td th:text="${command.cityCode}"></td>
-    <td th:text="${command.phone}"></td>
-    <td th:text="${command.contact}"></td>
-    <td th:text="${command.noRooms}"></td>
-    <td th:text="${command.noBeds}"></td>
-    <td th:text="${command.url}"></td>
-    <td th:text="${command.familyFriendly} ? #{yes} : #{no}"></td>
-    <td th:text="${command.dogFriendly} ? #{yes} : #{no}"></td>
-    <td th:text="${command.spa} ? #{yes} : #{no}"></td>
-    <td th:text="${command.fitness} ? #{yes} : #{no}"></td>
+        <td th:text="${command.id}"></td>
+        <td th:text="${command.owner}"></td>
+        <td th:text="${command.category}"></td>
+        <td th:text="${command.name}"></td>
+        <td th:text="${command.address}"></td>
+        <td th:text="${command.city}"></td>
+        <td th:text="${command.cityCode}"></td>
+        <td th:text="${command.phone}"></td>
+        <td th:text="${command.contact}"></td>
+        <td th:text="${command.noRooms}"></td>
+        <td th:text="${command.noBeds}"></td>
+        <td th:text="${command.url}"></td>
+        <td th:text="${command.familyFriendly} ? #{yes} : #{no}"></td>
+        <td th:text="${command.dogFriendly} ? #{yes} : #{no}"></td>
+        <td th:text="${command.spa} ? #{yes} : #{no}"></td>
+        <td th:text="${command.fitness} ? #{yes} : #{no}"></td>
     </tr>
     </tbody>
 </table>
@@ -71,7 +57,6 @@
        th:text=${pageNumber}
        th:class="${pageNumber==hotelPage.number} ? active"></a>
 </div>
-
 <nav aria-label="Page navigation example">
     <ul class="pagination" th:if="${hotelPage.totalPages > 0}">
         <a class="page-item" th:each="pageNumber : ${pageNumbers}">
@@ -82,8 +67,8 @@
 </nav>
 -->
 
-<!-- PAGINATION
-<br>
+<!-- PAGINATION -->
+<!--
 <nav aria-label="Pagination" th:if="${hotelPage.totalPages gt 0}">
     <ul class="pagination justify-content-center font-weight-bold">
         <li class="page-item" th:classappend="${hotelPage.number eq 0} ? 'disabled'">
@@ -108,15 +93,9 @@
     </ul>
 </nav>
 -->
-
 <button type="button" class="btn">
-    <a href="http://localhost:8080/backup" class="btn btn-primary" role="button"
+    <a href="http://localhost:8080/backup" class="btn btn-outline-info" role="button"
        aria-pressed="true">Backup</a>
-</button>
-
-<button type="button" class="btn">
-<a href="http://localhost:8080/hotelform" class="btn btn-primary" role="button"
-   aria-pressed="true">Hotels hinzufügen</a>
 </button>
 
 <div th:replace="fragments/footer :: footerfixed"></div>
