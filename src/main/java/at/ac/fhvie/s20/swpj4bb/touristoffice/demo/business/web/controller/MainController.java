@@ -2,6 +2,7 @@ package at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.web.controller;
 
 import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.entity.Hotel;
 import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.service.HotelService;
+import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.web.email.SendEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -59,11 +60,30 @@ public class MainController {
     return "index";
   }
 
+  private static String DEFAULT_EMAILADDRESS = "touristoffice.noe@gmail.com";
+
   @GetMapping("/backup")
-  public String backup() {
+  public String backup(Model model
+  ) {
+    model.addAttribute("emailaddress", DEFAULT_EMAILADDRESS);
+
+    return "backup";
+  }
+
+  @PostMapping("/backup")
+  public String backup(
+      @RequestParam(value = "emailaddress") String emailaddress
+  ) {
     hotelService.exportDatabase();
 
+    SendEmail.sendEmail(emailaddress);
+    updateDefaultEmailAddress(emailaddress);
     return "redirect:/index";
   }
 
+  private static void updateDefaultEmailAddress(final String newEmail) {
+    if (!newEmail.equals(DEFAULT_EMAILADDRESS)) {
+      DEFAULT_EMAILADDRESS = newEmail;
+    }
+  }
 }

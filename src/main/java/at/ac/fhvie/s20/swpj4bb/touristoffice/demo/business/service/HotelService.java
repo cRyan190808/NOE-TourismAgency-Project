@@ -78,7 +78,7 @@ public class HotelService {
     // Enable when reading from CSV file
     // readDatabaseFromCsv();
 
-    // Elable when reading from H2 database
+    // Enable when reading from H2 database
     readDatabaseFromH2();
   }
 
@@ -151,7 +151,7 @@ public class HotelService {
    * @param hotel Hotel to add
    */
   private static void addHotelToCapacity(final Hotel hotel) {
-    // Get the category string of the hotel. Please keep in mind that catefory one and
+    // Get the category string of the hotel. Please keep in mind that category one and
     // two are combined together
     String index = getStarIndex((hotel.getCategory()));
 
@@ -226,7 +226,7 @@ public class HotelService {
     clearCapacityMap();
     clearOccupancyMap();
 
-    // Retrieve data from database and add the hotels to the various colection
+    // Retrieve data from database and add the hotels to the various collection
     for (Hotel hotel : hotelRepository.findAll()) {
       hotels.add(hotel);
       addHotelToCapacity(hotel);
@@ -440,8 +440,9 @@ public class HotelService {
     // Write the SQL string to the file system
     BufferedWriter writer = null;
     try {
-      String fileName = "hotel" + dateFormat.format(date) + ".sql";
-      writer = new BufferedWriter(new FileWriter(fileName));
+      //String fileName = "hotel" + dateFormat.format(date) + ".sql";
+      String fileName = "hotels.sql";
+      writer = new BufferedWriter(new FileWriter("src/main/resources/hotelData/" +fileName));
       writer.write(sql);
       writer.close();
 
