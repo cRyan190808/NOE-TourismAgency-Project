@@ -52,7 +52,7 @@ public class CategoryConverter implements AttributeConverter<Category, Integer> 
       case 4:
         return Category.FIVE;
       default:
-        throw new IllegalArgumentException("Category ID " + dbData + " not supported");
+        throw new IllegalArgumentException("Sternenanzahl muss zwischen 1 und 5 sein. (Eingebener Wert: " + dbData + ")");
     }
     // CSON: MagicNumber
 

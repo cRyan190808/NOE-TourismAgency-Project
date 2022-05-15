@@ -55,15 +55,16 @@ public final class Hotel {
   @Column(name = "beds")
   private int noBeds;
 
+  private String url;
+
   @Column(name = "family_friendly")
-  private String familyFriendly;
+  private boolean familyFriendly;
 
   @Column(name = "dog_friendly")
-  private String dogFriendly;
+  private boolean dogFriendly;
 
-  private String url;
-  private String spa;
-  private String fitness;
+  private boolean spa;
+  private boolean fitness;
 
   public static HotelBuilder builder() {
     return new HotelBuilder();
@@ -102,10 +103,10 @@ public final class Hotel {
     private int noRooms;
     private int noBeds;
     private String url;
-    private String familyFriendly;
-    private String dogFriendly;
-    private String spa;
-    private String fitness;
+    private boolean familyFriendly;
+    private boolean dogFriendly;
+    private boolean spa;
+    private boolean fitness;
 
     public HotelBuilder() {
     }
@@ -180,22 +181,22 @@ public final class Hotel {
       return this;
     }
 
-    public HotelBuilder familyFriendly(final String familyFriendly) {
+    public HotelBuilder familyFriendly(final boolean familyFriendly) {
       this.familyFriendly = familyFriendly;
       return this;
     }
 
-    public HotelBuilder dogFriendly(final String dogFriendly) {
+    public HotelBuilder dogFriendly(final boolean dogFriendly) {
       this.dogFriendly = dogFriendly;
       return this;
     }
 
-    public HotelBuilder spa(final String spa) {
+    public HotelBuilder spa(final boolean spa) {
       this.spa = spa;
       return this;
     }
 
-    public HotelBuilder fitness(final String fitness) {
+    public HotelBuilder fitness(final boolean fitness) {
       this.fitness = fitness;
       return this;
     }
@@ -220,6 +221,8 @@ public final class Hotel {
     this.category = category;
   }
 
+  //Deactivated due to boolean change of extras
+  /*
   public void checkBoxToString() {
     if (this.dogFriendly != null && this.dogFriendly.equals("on")) {
       this.dogFriendly = "true";
@@ -243,5 +246,5 @@ public final class Hotel {
     }
 
   }
-
+*/
 }

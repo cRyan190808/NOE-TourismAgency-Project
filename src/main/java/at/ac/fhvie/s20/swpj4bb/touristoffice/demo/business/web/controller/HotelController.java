@@ -50,9 +50,15 @@ public class HotelController {
       Model model,
       RedirectAttributes ra,
       @RequestParam(value = "tempCategory") int tempCategory) {
-      command.setCategory(new CategoryConverter().convertToEntityAttribute(tempCategory));
+      //command.setCategory(new CategoryConverter().convertToEntityAttribute(tempCategory));
+      ArrayList<String> errors = hotelValidator.validate(command);
 
-      command.checkBoxToString();
+      try {
+        command.setCategory(new CategoryConverter().convertToEntityAttribute(tempCategory));
+      } catch (IllegalArgumentException exc) {
+        errors.add(exc.getLocalizedMessage());
+      }
+      //command.checkBoxToString();
 
     // bindingResult is for a certain kind of data validation and not used in this example.
     // The RedirectAttributes are similar to Attributes but witht he difference that the values are
@@ -60,7 +66,7 @@ public class HotelController {
     // With using Attribute the request parameters are created out of the attributes and are serialized
     // RedriectAttributes are not serialized and can therefore store any object
 
-    ArrayList<String> errors = hotelValidator.validate(command);
+    //ArrayList<String> errors = hotelValidator.validate(command);
     // You have to format the error string for displaying it in HTML.
     // On a web page the \n is not valid and so no line feed is made.
     if (!errors.isEmpty()) {
