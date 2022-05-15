@@ -1,50 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Belegung</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>NOE Tourismus</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/style.css" th:src="@{css/style.css}">
-</head>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<div th:replace="fragments/header :: header"></div>
+
 <body>
 
-<nav class="navbar navbar-expand-xl"> <!---bg gelöscht--->
-    <a class="navbar-brand" href="http://localhost:8080">
-        <img src="images/NOE_LOGO.png" height="120" width="100" th:src="@{images/NOE_LOGO.png}" />
-    </a>
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8080/index">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8080/hotelform">Hotels</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8080/hotellist">Hotelliste</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="http://localhost:8080/occupancy">Belegung</a>
-            </li>
-
-        </ul>
-        <a href="http://localhost:8080/help" class="btn btn-outline-info" role="button"
-           aria-pressed="true">Help</a>
-    </div>
-</nav>
+<div th:replace="fragments/navbar :: navbar"></div>
 <!---
 <table border="1">
     <thead>
@@ -73,15 +34,10 @@
     </tbody>
 </table> --->
 
-<footer class=""site-footer>
-    <nav class="meta-nav">
-        <ul>
-            <li><a href="http://localhost:8080/impressum">Impressum</a></li>
-            <li><a href="http://localhost:8080/datenschutz">Datenschutz</a></li>
-            <li><a href="#top"> Nach oben</a></li>
-        </ul>
-    </nav>
-</footer>
+<div th:replace="fragments/footer :: footerfixed"></div>
+
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 </body>
 </html>

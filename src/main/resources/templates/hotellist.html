@@ -1,56 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>NOE Tourismus</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/style.css">
-</head>
+
+<div th:replace="fragments/header :: header"></div>
+
 <body>
 
-<!-- NAVBAR - https://getbootstrap.com/docs/4.0/components/navbar/ -->
-<nav class="navbar navbar-expand-xl">
-    <a class="navbar-brand" href="http://localhost:8080">
-        <img src="images/NOE_LOGO.png" height="120" width="100" />
-    </a>
+<div th:replace="fragments/navbar :: navbar"></div>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8080/index">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8080/hotelform">Hotels</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="http://localhost:8080/hotellist">Hotelliste</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8080/occupancy">Belegung</a>
-            </li>
-
-        </ul>
-        <button type="button" class="btn">
-            <a href="http://localhost:8080/backup" class="btn btn-outline-info" role="button"
-               aria-pressed="true">Backup</a>
-        </button>
-        <button type="button" class="btn">
-        <a href="http://localhost:8080/help" class="btn btn-outline-info" role="button"
-           aria-pressed="true">Help</a>
-        </button>
-    </div>
-</nav>
-<!-- NAVBAR - https://getbootstrap.com/docs/4.0/components/navbar/ -->
 <!---
 <table border="1">
     <thead>
@@ -93,18 +49,10 @@
        th:class="${pageNumber==hotelPage.number} ? active"></a>
 </div>
 
-<footer class="site-footer">
-    <nav class="meta-nav">
-        <ul>
-            <li><a href="http://localhost:8080/impressum">Impressum</a></li>
-            <li><a href="http://localhost:8080/datenschutz">Datenschutz</a></li>
-            <li><a href="#top">Nach oben</a></li>
-        </ul>
-    </nav>
-</footer>
+<div th:replace="fragments/footer :: footerfixed"></div>
 
-
-
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 </body>
 </html>
