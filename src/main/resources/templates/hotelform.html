@@ -126,12 +126,12 @@
             <div class="form-group">
                 <div>
                     <input type="checkbox" id="familyFriendly" name="familyFriendly">
-                    <label for="familyFriendly" th:field="*{familyFriendly}"> family-friendly  <!--th:text="#{familyfriendly}"/> --> </label>
+                    <label for="familyFriendly" th:field="*{familyFriendly}" th:text="#{familyfriendly}"/></label>
                 </div>
 
                 <div>
                     <input type="checkbox" id="dogFriendly" name="dogFriendly">
-                    <label for="dogFriendly" th:field="*{dogFriendly}"> dog-friendly <!-- <th:text="#{dogfriendly}"/> --> </label>
+                    <label for="dogFriendly" th:field="*{dogFriendly}" th:text="#{dogfriendly}"/></label>
                 </div>
             </div>
         </div>
@@ -140,31 +140,31 @@
             <div class="form-group">
                 <div>
                     <input type="checkbox" id="spa" name="spa">
-                    <label for="spa" th:field="*{spa}"> Spa <!-- th:text="#{spa}"/> --> </label>
+                    <label for="spa" th:field="*{spa}" th:text="#{spa}"/></label>
                 </div>
 
                 <div>
                     <input type="checkbox" id="fitness" name="fitness">
-                    <label for="fitness" th:field="*{fitness}"> Fitness <!--th:text="#{fitness}"/> --> </label>
+                    <label for="fitness" th:field="*{fitness}" th:text="#{fitness}"/></label>
                 </div>
             </div>
         </div>
     </div>
 
     <button>
-        <a href="http://localhost:8080/hotellist" class="btn btn-outline-info" role="button"
-           aria-pressed="true">Submit
+        <a href="http://localhost:8080/hotellist" class="btn btn-primary"
+           aria-pressed="true" th:text="#{submit}"/>
         </a>
     </button>
 
     <button>
-        <a href="http://localhost:8080/hotelform" class="btn btn-outline-info" role="button"
-           aria-pressed="true">Reset
+        <a href="http://localhost:8080/hotelform" class="btn btn-secondary"
+           aria-pressed="true" th:text="#{reset}"/>
         </a>
     </button>
 <br>
 <br>
-<br>
+
 
 </form>
 
