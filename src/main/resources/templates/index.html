@@ -69,45 +69,34 @@
 <!--<table border="1">
     <thead>
     <tr>
-        <th th:text="#{id}"
-        /td>
-        <th th:text="#{category}"
-        /td>
-        <th th:text="#{name}"
-        /td>
-        <th th:text="#{address}"
-        /td>
-        <th th:text="#{city}"
-        /td>
-        <th th:text="#{contact}"
-        /td>
-        <th th:text="#{url}"
-        /td>
-        <th th:text="#{familyfriendly}"
-        /td>
-        <th th:text="#{dogfriendly}"
-        /td>
-        <th th:text="#{spa}"
-        /td>
-        <th th:text="#{fitness}"
-        /td>
+        <th th:text="#{id}"</th>
+        <th th:text="#{category}"</th>
+        <th th:text="#{name}"</th>
+        <th th:text="#{address}"</th>
+        <th th:text="#{city}"</th>
+        <th th:text="#{contact}"</th>
+        <th th:text="#{url}"</th>
+        <th th:text="#{familyfriendly}"</th>
+        <th th:text="#{dogfriendly}"</th>
+        <th th:text="#{spa}"</th>
+        <th th:text="#{fitness}"</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="hotel, iStat : ${hotelPage.content}"
         th:style="${iStat.odd}? 'font-weight: bold;'"
         th:alt-title="${iStat.even}? 'even' : 'odd'">
-        <td th:text="${hotel.id}"/>
-        <td th:text="${hotel.category}"/>
-        <td th:text="${hotel.name}"/>
-        <td th:text="${hotel.address}"/>
-        <td th:text="${hotel.city}"/>
-        <td th:text="${hotel.contact}"/>
-        <td th:text="${hotel.url}"/>
-        <td th:text="${hotel.familyFriendly} ? #{yes} : #{no}"/>
-        <td th:text="${hotel.dogFriendly} ? #{yes} : #{no}"/>
-        <td th:text="${hotel.spa} ? #{yes} : #{no}"/>
-        <td th:text="${hotel.fitness} ? #{yes} : #{no}"/>
+        <td th:text="${hotel.id}"></td>
+        <td th:text="${hotel.category}></td>
+        <td th:text="${hotel.name}"></td>
+        <td th:text="${hotel.address}"></td>
+        <td th:text="${hotel.city}"></td>
+        <td th:text="${hotel.contact}"></td>
+        <td th:text="${hotel.url}"></td>
+        <td th:text="${hotel.familyFriendly} ? #{yes} : #{no}"></td>
+        <td th:text="${hotel.dogFriendly} ? #{yes} : #{no}"></td>
+        <td th:text="${hotel.spa} ? #{yes} : #{no}"></td>
+        <td th:text="${hotel.fitness} ? #{yes} : #{no}"></td>
     </tr>
     </tbody>
 </table> --->

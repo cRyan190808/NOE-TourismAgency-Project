@@ -1,49 +1,15 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Hotel Result</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../static/css/style.css">
-</head>
+
+<div th:replace="fragments/header :: header"></div>
+
 <body>
 
-<!-- NAVBAR - https://getbootstrap.com/docs/4.0/components/navbar/ -->
-<nav class="navbar navbar-expand-xl navbar-light bg-light">
-    <a class="navbar-brand" href="http://localhost:8080">
-        <img src="../static/images/NOE_LOGO.png" height="120" width="100" th:src="@{images/NOE_LOGO.png}" />
-    </a>
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8080/home">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8080/hotelform">Hotels</a>
-            <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8080/help">Help</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-<!-- NAVBAR - https://getbootstrap.com/docs/4.0/components/navbar/ -->
-
+div th:replace="fragments/navbar :: navbar"></div>
 
 <!-- Text must be enclosed in single quotes!!! -->
-<p style="width: 500px; margin: auto" th:text="'Here you have the data'" />
-
+<p style="width: 500px; margin: auto" th:text="'The data was sumbitted successful!'" />
+<!--
 <p style="width: 500px; margin: auto" th:text= "'Hotel name: ' + ${command.name}" />
 <p th:text= "'Textarea Value: ' + ${command.owner}" />
 <p th:text= "'Textarea Value: ' + ${command.category}" />
@@ -54,14 +20,51 @@
 <p th:text= "'Dropdown Value: ' + ${command.phone}" />
 <p th:text= "'Checkbox Value: ' + ${command.noRooms}" />
 <p th:text= "'Dropdown Value: ' + ${command.noBeds}" />
+-->
+<table border="1">
+    <thead>
+    <tr>
+        <th th:text="#{id}"></th>
+        <th th:text="#{owner}"></th>
+        <th th:text="#{category}"></th>
+        <th th:text="#{name}"></th>
+        <th th:text="#{address}"></th>
+        <th th:text="#{city}"></th>
+        <th th:text="#{citycode}"></th>
+        <th th:text="#{phone}"></th>
+        <th th:text="#{contact}"></th>
+        <th th:text="#{numberofrooms}"></th>
+        <th th:text="#{numberofbeds}"></th>
+        <th th:text="#{url}"></th>
+        <th th:text="#{familyfriendly}"></th>
+        <th th:text="#{dogfriendly}"></th>
+        <th th:text="#{spa}"></th>
+        <th th:text="#{fitness}"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td th:text="${command.id}"></td>
+    <td th:text="${command.owner}"></td>
+    <td th:text="${command.category}"></td>
+    <td th:text="${command.name}"></td>
+    <td th:text="${command.address}"></td>
+    <td th:text="${command.city}"></td>
+    <td th:text="${command.cityCode}"></td>
+    <td th:text="${command.phone}"></td>
+    <td th:text="${command.contact}"></td>
+    <td th:text="${command.noRooms}"></td>
+    <td th:text="${command.noBeds}"></td>
+    <td th:text="${command.url}"></td>
+    <td th:text="${command.familyFriendly} ? #{yes} : #{no}"></td>
+    <td th:text="${command.dogFriendly} ? #{yes} : #{no}"></td>
+    <td th:text="${command.spa} ? #{yes} : #{no}"></td>
+    <td th:text="${command.fitness} ? #{yes} : #{no}"></td>
+    </tr>
+    </tbody>
+</table>
 
-<a href="/fooform">resubmit form</a>
-
-
-
-<nav class="navbar fixed-bottom navbar-light bg-light">
-    <a style="color: black" class="navbar-brand" href="#!" th:text="#{version}"/></a>
-</nav>
+<div th:replace="fragments/footer :: footerfixed"></div>
 
 </body>
 </html>
