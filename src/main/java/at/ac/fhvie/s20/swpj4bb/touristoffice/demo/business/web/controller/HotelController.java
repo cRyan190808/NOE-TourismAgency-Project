@@ -31,7 +31,7 @@ public class HotelController {
   @GetMapping("/hotelform")
   public String fooForm(Model model) {
     model.addAttribute("command", new Hotel());
-    model.addAttribute("tempCategory", tempCategory);
+    model.addAttribute("tempCategory", tempCategory = 0);
     model.addAttribute("activePage", "hotelform");
 
     return "hotelform";
@@ -54,7 +54,7 @@ public class HotelController {
       ArrayList<String> errors = hotelValidator.validate(command);
 
       try {
-        command.setCategory(new CategoryConverter().convertToEntityAttribute(tempCategory));
+        command.setCategory(new CategoryConverter().convertToEntityAttribute(tempCategory - 1));
       } catch (IllegalArgumentException exc) {
         errors.add(exc.getLocalizedMessage());
       }
