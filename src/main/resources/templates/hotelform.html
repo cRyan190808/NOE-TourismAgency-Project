@@ -10,10 +10,11 @@
 <!-- Text must be enclosed in single quotes!!! -->
 <p style="width: 500px; margin: auto" th:text="#{addnewhotel}"></p>
 
-<!-- Display a possible error text
+<!-- Display a possible error text -->
 <div  class="alert alert-warning" role="alert" th:if="${error != null }" th:text="${error}">
     <p th:text="'Error: ' + ${error}"></p>
-</div> -->
+</div>
+
 <section class="container" id="alerts">
     <if th:if="${error == null }">
         <div class="alert alert-success" role="alert">
@@ -36,15 +37,15 @@
 
 <!-- Form Controls -  https://getbootstrap.com/docs/5.0/forms/form-control/ -->
 <form style="width: 400px; margin: auto" th:action="@{/hotelform}" th:object="${command}" method="post">
-    <p th:text="#{hotelname}+ ':'"/> <input class="form-control" type="text" placeholder="Name" th:field="*{name}" /></p>
-    <p th:text="#{category}+ ':'"/> <input class="form-control" type="number" placeholder="Sterne" th:field="*{category}" /></p>
-    <p th:text="#{owner}+ ':'"/> <input class="form-control" type="text" placeholder="e.g. Mika Muster" th:field="*{owner}" /></p>
-    <p th:text="#{contact}+ ':'"/> <input class="form-control" type="text" placeholder="e.g. Elia Somebody" th:field="*{contact}" /></p>
-    <p th:text="#{address}+ ':'"/> <input class="form-control" type="text" placeholder="Adresse" th:field="*{address}" /></p>
-    <p th:text="#{city}+ ':'"/> <input class="form-control" type="text" placeholder="Stadt" th:field="*{city}" /></p>
+    <p th:text="#{hotelname}+ ':'"/> <input class="form-control" type="text" placeholder="Name" th:field="*{name}"/></p>
+    <p th:text="#{category}+ ':'"/> <input class="form-control" type="number" placeholder="Sterne" th:field="*{category}"/></p>
+    <p th:text="#{owner}+ ':'"/> <input class="form-control" type="text" placeholder="e.g. Mika Muster" th:field="*{owner}"/></p>
+    <p th:text="#{contact}+ ':'"/> <input class="form-control" type="text" placeholder="e.g. Elia Somebody" th:field="*{contact}"/></p>
+    <p th:text="#{address}+ ':'"/> <input class="form-control" type="text" placeholder="Adresse" th:field="*{address}"/></p>
+    <p th:text="#{city}+ ':'"/> <input class="form-control" type="text" placeholder="Stadt" th:field="*{city}"/></p>
     <!-- Beware : The field name is case sensitive!!! It has to be named exactly as it is in the class!!! -->
-    <p th:text="#{citycode}+':'"/> <input class="form-control" type="text" placeholder="PLZ" th:field="*{cityCode}" /></p>
-    <p th:text="#{phone}+':'"/> <input class="form-control" type="text" placeholder="Telefon" th:field="*{phone}" /></p>
+    <p th:text="#{citycode}+':'"/> <input class="form-control" type="text" placeholder="PLZ" th:field="*{cityCode}"/></p>
+    <p th:text="#{phone}+':'"/> <input class="form-control" type="text" placeholder="Telefon" th:field="*{phone}"/></p>
     <!-- The same with the room and bed count! Try to change noRooms to rooms and you will see that IntelliJ underlines the
     // name. This is an indication that something is wrong-->
 
@@ -53,12 +54,12 @@
     <div class="row">
         <div class="col">
             <div class="form-group">
-                <p th:text="#{numberofrooms}+ ':'"/> <input class="form-control" type="number" placeholder="0 Zimmer"  th:field="*{noRooms}"/> </p>
+                <p th:text="#{numberofrooms}+ ':'"/> <input class="form-control" type="number" placeholder="0 Zimmer" min="0"  th:field="*{noRooms}"/></p>
             </div>
         </div>
         <div class="col">
             <div class="form-group">
-                <p th:text="#{numberofbeds}+ ':'"/> <input class="form-control" type="number" placeholder="0 Betten"  th:field="*{noBeds}"/> </p>
+                <p th:text="#{numberofbeds}+ ':'"/> <input class="form-control" type="number" placeholder="0 Betten" min="0"  th:field="*{noBeds}"/></p>
             </div>
         </div>
     </div>

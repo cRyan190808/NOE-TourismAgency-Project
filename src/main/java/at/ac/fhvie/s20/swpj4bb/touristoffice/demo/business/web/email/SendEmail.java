@@ -3,7 +3,13 @@ package at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.web.email;
 import java.io.File;
 import java.io.IOException;
 import java.util.Properties;
-
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+import java.util.zip.ZipOutputStream;
+import java.util.zip.ZipInputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
@@ -16,9 +22,7 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 public class SendEmail {
-  public static void sendEmail(final String emailaddress)
-
-  {
+  public static void sendEmail(final String emailaddress) {
     //EmailID of recipient needs to be mentioned
     String to = emailaddress;
 
@@ -38,10 +42,9 @@ public class SendEmail {
     properties.put("mail.smtp.auth", "true");
 
     //Get the Session object.// and pass username and password
-    Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+    Session session = Session.getInstance(properties, new Authenticator() {
 
       protected PasswordAuthentication getPasswordAuthentication() {
-
         return new PasswordAuthentication("touristoffice.noe@gmail.com", "!noetouristoffice2");
 
       }
@@ -71,10 +74,23 @@ public class SendEmail {
       MimeBodyPart textPart = new MimeBodyPart();
 
       try {
+        File dataFile = new File("src/main/resources/hotelData/hotels.sql");
+        FileOutputStream fos = new FileOutputStream("src/main/resources/hotelData/hotels.zip");
+        ZipOutputStream zipOut = new ZipOutputStream(fos);
+        FileInputStream fis = new FileInputStream(dataFile);
+        ZipEntry zipEntry = new ZipEntry(dataFile.getName());
+        zipOut.putNextEntry(zipEntry);
+        byte[] bytes = new byte[1024];
+        int length;
+        while ((length = fis.read(bytes)) >= 0) {
+          zipOut.write(bytes, 0, length);
+        }
 
-        File f =new File("src/main/resources/hotelData/hotels.sql");
+        zipOut.close();
+        fis.close();
+        fos.close();
 
-        attachmentPart.attachFile(f);
+        attachmentPart.attachFile("src/main/resources/hotelData/hotels.zip");
         textPart.setText("Dear Recipient,\n\n" +
             "please find the backup file attached to this email.\n\n" +
             "Best regards,\n" +
@@ -101,5 +117,3 @@ public class SendEmail {
   }
 
 }
-
-
