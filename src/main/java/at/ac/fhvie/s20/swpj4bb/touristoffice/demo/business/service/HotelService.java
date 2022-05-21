@@ -404,6 +404,20 @@ public class HotelService {
 
   }
 
+  public void delete(final Hotel newHotel) {
+
+    // Data of the original one has to be altered with the new ones.
+    Hotel oldHotel = findById(newHotel.getId());
+    oldHotel.updateWith(newHotel);
+    // update is the same as save! as long as the id is the same!!!!!!!!
+    hotelRepository.save(oldHotel);
+
+    // Export the database as SQL file
+    exportDatabase();
+
+
+  }
+
   /**
    * Dump the data as SQL file
    */

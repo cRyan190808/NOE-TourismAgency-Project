@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
 
 <div th:replace="fragments/header :: header"></div>
 
@@ -38,8 +38,19 @@
 <!-- Form Controls -  https://getbootstrap.com/docs/5.0/forms/form-control/ -->
 <form style="width: 400px; margin: auto" th:action="@{/hotelform}" th:object="${command}" method="post">
     <p th:text="#{hotelname}+ ':'"/> <input class="form-control" type="text" placeholder="Name" th:field="*{name}"/></p>
-    <p th:text="#{category}+ ':'"/> <input class="form-control" type="number" placeholder="Sterne" th:field="*{category}"/></p>
+    <!--
     <p th:text="#{owner}+ ':'"/> <input class="form-control" type="text" placeholder="e.g. Mika Muster" th:field="*{owner}"/></p>
+    -->
+
+    <label for="exampleFormControlSelect1" > Sterne </label>
+    <select class="form-control" id="exampleFormControlSelect1"  th:name="tempCategory">
+        <option >*</option>
+        <option >**</option>
+        <option >***</option>
+        <option >****</option>
+        <option >*****</option>
+    </select></p>
+
     <p th:text="#{contact}+ ':'"/> <input class="form-control" type="text" placeholder="e.g. Elia Somebody" th:field="*{contact}"/></p>
     <p th:text="#{address}+ ':'"/> <input class="form-control" type="text" placeholder="Adresse" th:field="*{address}"/></p>
     <p th:text="#{city}+ ':'"/> <input class="form-control" type="text" placeholder="Stadt" th:field="*{city}"/></p>
@@ -65,9 +76,9 @@
     </div>
 
     <p th:text="#{features}+ ':'"/> </p>
-    <div class="row">
+    <div class="row" >
         <div class="col">
-            <div class="form-group">
+            <div class="form-group"> -->
                 <div>
                     <input type="checkbox" id="familyFriendly" name="familyFriendly">
                     <label for="familyFriendly" th:field="*{familyFriendly}" th:text="#{familyfriendly}"/></label>
@@ -96,7 +107,7 @@
     </div>
 
     <button>
-        <a href="http://localhost:8080/hotellist" class="btn btn-primary"
+        <a href="http://localhost:8080/hotelresult" class="btn btn-primary"
            aria-pressed="true" th:text="#{submit}"/>
         </a>
     </button>
