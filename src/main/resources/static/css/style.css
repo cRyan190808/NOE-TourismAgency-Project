@@ -44,7 +44,7 @@ nav li {
 }
 
 nav {
-    background-color: gold;
+    background-color: darkblue;
     color: white;
     padding: 0.5rem;
     margin: 1rem 0;
@@ -56,12 +56,12 @@ nav ul {
 }
 
 nav a {
-    color: white;
+    color: whitesmoke;
     text-decoration: none;
 }
 
 footer {
-    background-color: gold;
+    background-color: darkblue;
     color: white;
     text-align: right;
     padding: 0.5rem;
@@ -78,7 +78,7 @@ figure{
 }
 
 main {
-    text-align: left;
+    text-align: center;
 }
 
 button {
