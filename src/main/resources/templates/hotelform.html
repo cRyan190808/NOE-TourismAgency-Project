@@ -16,14 +16,14 @@
 </div>
 
 <section class="container" id="alerts">
-    <if th:if="${error == null }">
+    <!--- <if th:if="${error == null }">
         <div class="alert alert-success" role="alert">
             Hotel hinzugefügt!
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">x</span>
             </button>
         </div>
-    </if>
+    </if> ---->
     <if th:if="${error != null }">
         <div class="alert alert-danger" role="alert" >
             Fehler beim Hinzufügen des Hotels!
@@ -78,7 +78,7 @@
     <p th:text="#{features}+ ':'"/> </p>
     <div class="row" >
         <div class="col">
-            <div class="form-group"> -->
+            <div class="form-group">
                 <div>
                     <input type="checkbox" id="familyFriendly" name="familyFriendly">
                     <label for="familyFriendly" th:field="*{familyFriendly}" th:text="#{familyfriendly}"/></label>
