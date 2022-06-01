@@ -19,7 +19,6 @@ public class HotelValidator extends ValidationSupport implements Validator<Hotel
   @Override
   public ArrayList<String> validate(final Hotel hotel) {
     ArrayList<String> errors = new ArrayList<>();
-    //String error = "";
 
     if (isNullOrEmptyString(hotel.getName())) {
       errors.add(nameExceptionMessage());
@@ -32,9 +31,11 @@ public class HotelValidator extends ValidationSupport implements Validator<Hotel
     if (isNullOrEmptyString(hotel.getContact())) {
       errors.add(contactExceptionMessage());
     }
+
     if (isNullOrEmptyString(hotel.getAddress())) {
       errors.add(addressExceptionMessage());
     }
+
     if (isNullOrEmptyString(hotel.getCity())) {
       errors.add(cityExceptionMessage());
     }
@@ -44,6 +45,7 @@ public class HotelValidator extends ValidationSupport implements Validator<Hotel
     if (isNullOrEmptyString(hotel.getPhone())) {
       errors.add(phoneExceptionMessage());
     }
+
     if (isLessEqualZero(hotel.getNoBeds())) {
       errors.add(bedExceptionMessage(hotel.getNoBeds()));
     }
@@ -52,9 +54,6 @@ public class HotelValidator extends ValidationSupport implements Validator<Hotel
       errors.add(roomExceptionMessage(hotel.getNoRooms()));
     }
 
-    // Maybe it is not so optimal that a String with all the error messages in one single String is returned.
-    // Maybe an ArrayList with the entries separated is the better solution. In one single string it is good for swing
-    // but separates Strings are better in HTML
     return errors;
   }
 
@@ -93,5 +92,4 @@ public class HotelValidator extends ValidationSupport implements Validator<Hotel
   private String roomExceptionMessage(final int errorValue) {
     return "Raumzahl muss größer als 0 sein (Ist:" + errorValue + ").\n";
   }
-
 }

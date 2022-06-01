@@ -5,8 +5,6 @@ import lombok.Data;
 
 @Data
 public class FormCommand {
-
-
   String textField;
 
   String textareaField;
@@ -22,5 +20,4 @@ public class FormCommand {
   String radioButtonSelectedValue;
 
   String dropdownSelectedValue;
-
 }

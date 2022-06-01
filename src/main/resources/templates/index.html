@@ -7,64 +7,6 @@
 
 <div th:replace="fragments/navbar :: navbar"></div>
 
-<!--Ignore for now!
-<h1 th:text="#{title}"></h1>
-<p th:text="#{message}"></p>-->
-
-<!--<table border="1">
-    <thead>
-    <tr>
-        <th th:text="#{id}"</th>
-        <th th:text="#{category}"</th>
-        <th th:text="#{name}"</th>
-        <th th:text="#{address}"</th>
-        <th th:text="#{city}"</th>
-        <th th:text="#{contact}"</th>
-        <th th:text="#{url}"</th>
-        <th th:text="#{familyfriendly}"</th>
-        <th th:text="#{dogfriendly}"</th>
-        <th th:text="#{spa}"</th>
-        <th th:text="#{fitness}"</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="hotel, iStat : ${hotelPage.content}"
-        th:style="${iStat.odd}? 'font-weight: bold;'"
-        th:alt-title="${iStat.even}? 'even' : 'odd'">
-        <td th:text="${hotel.id}"></td>
-        <td th:text="${hotel.category}></td>
-        <td th:text="${hotel.name}"></td>
-        <td th:text="${hotel.address}"></td>
-        <td th:text="${hotel.city}"></td>
-        <td th:text="${hotel.contact}"></td>
-        <td th:text="${hotel.url}"></td>
-        <td th:text="${hotel.familyFriendly} ? #{yes} : #{no}"></td>
-        <td th:text="${hotel.dogFriendly} ? #{yes} : #{no}"></td>
-        <td th:text="${hotel.spa} ? #{yes} : #{no}"></td>
-        <td th:text="${hotel.fitness} ? #{yes} : #{no}"></td>
-    </tr>
-    </tbody>
-</table> --->
-
-<!-- first pagination - among/untereinander
-<div th:if="${hotelPage.totalPages > 0}" class="pagination"
-     th:each="pageNumber : ${pageNumbers}">
-    <a th:href="@{/index(size=${hotelPage.size}, page=${pageNumber})}"
-       th:text=${pageNumber}
-       th:class="${pageNumber==hotelPage.number} ? active"></a>
-</div>
--->
-
-<!--- <nav aria-label="Page navigation example">
-    <ul class="pagination" th:if="${hotelPage.totalPages > 0}">
-
-        <a class="page-item" th:each="pageNumber : ${pageNumbers}">
-            <a class="page-link" th:href="@{/index(size=${hotelPage.size}, page=${pageNumber})}"
-            <a th:text=${pageNumber} </a> </a>
-        <a th:class="${pageNumber==hotelPage.number} ? active"></a></li>
-    </ul>
-</nav>---->
-
 <main class="site-content" id="content">
     <h4>Willkommen auf unserer Seite</h4>
     <h5>Unsere Hotel Datenbank enthält ausschließlich aktuelle und relevante Daten </h5>
@@ -76,31 +18,8 @@
          alt="Bild"
          width="800"
          height="400">
-         <figcaption></figcaption>
+    <figcaption></figcaption>
 </figure>
-<!--
-<button type="button" class="btn">
-    <a href="http://localhost:8080/backup" class="btn btn-outline-info" role="button"
-       aria-pressed="true">Backup</a>
-</button>
--->
-
-<!--
-<nav style="margin: auto; letter-spacing:10px" aria-label="Page navigation example">
-    <ul class="pagination">
-        <li th:if="${hotelPage.totalPages > 0}" class="pagination"
-            th:each="pageNumber : ${pageNumbers}">
-            <a class="page-link" th:href="@{/index(size=${hotelPage.size}, page=${pageNumber})}"
-               th:text=${pageNumber}
-               th:class="${pageNumber==hotelPage.number} ? active"></a>
-        </li>
-    </ul>
-</nav>
--->
-<!---
-<nav class="navbar fixed-bottom navbar-light bg-light">
-    <a style="color: black" class="navbar-brand" href="#!" th:text="#{version}"/></a>
-</nav> ---->
 
 <div th:replace="fragments/footer :: footerfixed"></div>
 

@@ -7,23 +7,19 @@
 
 <div th:replace="fragments/navbar :: navbar"></div>
 
-<!-- Text must be enclosed in single quotes!!! -->
-<p style="width: 500px; margin: auto" th:text="#{addnewhotel}"></p>
-
-<!-- Display a possible error text -->
-<div  class="alert alert-warning" role="alert" th:if="${error != null }" th:text="${error}">
-    <p th:text="'Error: ' + ${error}"></p>
-</div>
+<p style="width: 400px; margin: auto; text-align: center;" th:text="#{addnewhotel}"></p>
 
 <section class="container" id="alerts">
-    <!--- <if th:if="${error == null }">
+    <!---
+    <if th:if="${error == null }">
         <div class="alert alert-success" role="alert">
             Hotel hinzugefügt!
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">x</span>
             </button>
         </div>
-    </if> ---->
+    </if>
+    ---->
     <if th:if="${error != null }">
         <div class="alert alert-danger" role="alert" >
             Fehler beim Hinzufügen des Hotels!
@@ -36,21 +32,21 @@
 </section>
 
 <!-- Form Controls -  https://getbootstrap.com/docs/5.0/forms/form-control/ -->
-<form style="width: 400px; margin: auto" th:action="@{/hotelform}" th:object="${command}" method="post">
-    <p th:text="#{hotelname}+ ':'"/> <input class="form-control" type="text" placeholder="Name" th:field="*{name}"/></p>
+<form style="width: 400px; margin: auto" th:action="@{/hotelform}" th:object="${hotel}" method="post">
+    <p th:text="#{name}+ ':'"/> <input class="form-control" type="text" placeholder="Name" th:field="*{name}"/></p>
     <!--
     <p th:text="#{owner}+ ':'"/> <input class="form-control" type="text" placeholder="e.g. Mika Muster" th:field="*{owner}"/></p>
     -->
 
     <label for="exampleFormControlSelect1" > Sterne </label>
-    <select class="form-control" id="exampleFormControlSelect1"  th:name="tempCategory">
-        <option >*</option>
-        <option >**</option>
-        <option >***</option>
-        <option >****</option>
-        <option >*****</option>
+    <select class="form-control" id="exampleFormControlSelect1"  th:name="category">
+        <option value="ONE">*</option>
+        <option value="TWO">**</option>
+        <option value="THREE">***</option>
+        <option value="FOUR">****</option>
+        <option value="FIVE">*****</option>
     </select></p>
-
+    <p th:text="#{owner}+ ':'"/> <input class="form-control" type="text" placeholder="e.g. Mika Muster" th:field="*{owner}" /></p>
     <p th:text="#{contact}+ ':'"/> <input class="form-control" type="text" placeholder="e.g. Elia Somebody" th:field="*{contact}"/></p>
     <p th:text="#{address}+ ':'"/> <input class="form-control" type="text" placeholder="Adresse" th:field="*{address}"/></p>
     <p th:text="#{city}+ ':'"/> <input class="form-control" type="text" placeholder="Stadt" th:field="*{city}"/></p>
@@ -106,17 +102,20 @@
         </div>
     </div>
 
-    <button>
-        <a href="http://localhost:8080/hotelresult" class="btn btn-primary"
-           aria-pressed="true" th:text="#{submit}"/>
-        </a>
-    </button>
+<!--    <button>-->
+<!--        <a href="http://localhost:8080/hotelliste" class="btn btn-primary"-->
+<!--           aria-pressed="true" th:text="#{submit}"/>-->
+<!--        </a>-->
+<!--    </button>-->
 
-    <button>
-        <a href="http://localhost:8080/hotelform" class="btn btn-secondary"
-           aria-pressed="true" th:text="#{reset}"/>
-        </a>
-    </button>
+
+<!--    <button>-->
+<!--        <a href="http://localhost:8080/hotelform" class="btn btn-secondary"-->
+<!--           aria-pressed="true" th:text="#{reset}"/>-->
+<!--        </a>-->
+<!--    </button>-->
+
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /> </p>
 <br>
 
 </form>

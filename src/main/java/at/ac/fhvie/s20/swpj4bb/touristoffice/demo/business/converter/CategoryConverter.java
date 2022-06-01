@@ -13,12 +13,10 @@ import java.util.logging.Logger;
  */
 @Converter(autoApply = true)
 public class CategoryConverter implements AttributeConverter<Category, Integer> {
-  private Logger log = Logger.getLogger(CategoryConverter.class.getSimpleName());
+  private final Logger LOG = Logger.getLogger(CategoryConverter.class.getSimpleName());
 
   @Override
   public Integer convertToDatabaseColumn(final Category category) {
-
-    // CSOFF: MagicNumber
     switch (category) {
       case ONE:
         return 0;
@@ -31,13 +29,10 @@ public class CategoryConverter implements AttributeConverter<Category, Integer> 
       case FIVE:
         return 4;
       default:
-        throw new IllegalArgumentException("Conversion " + category.toString() + " not "
-            + "implemented");
+        throw new IllegalArgumentException("Conversion " + category + " not implemented");
     }
-    // CSON: MagicNumber
   }
 
-  // CSOFF: MagicNumber
   @Override
   public Category convertToEntityAttribute(final Integer dbData) {
     switch (dbData) {
@@ -54,12 +49,9 @@ public class CategoryConverter implements AttributeConverter<Category, Integer> 
       default:
         throw new IllegalArgumentException("Sternenanzahl muss zwischen 1 und 5 sein. (Eingebener Wert: " + (dbData + 1) + ")");
     }
-    // CSON: MagicNumber
-
-
   }
 
   private void logDbConversion(final Category category, final Integer dbData) {
-    log.info("Convert Category enum [" + category + "] to [" + dbData + "]");
+    LOG.info("Convert Category enum [" + category + "] to [" + dbData + "]");
   }
 }

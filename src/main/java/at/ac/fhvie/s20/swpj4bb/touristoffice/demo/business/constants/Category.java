@@ -38,7 +38,6 @@ public enum Category {
   }
 
   public static Category get(final String stars) {
-
     return LOOKUP_STARS.get(stars);
   }
 
@@ -46,6 +45,4 @@ public enum Category {
   public String toString() {
     return stars;
   }
-
-
 }

@@ -2,12 +2,12 @@ package at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.service;
 
 import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.constants.Category;
 import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.converter.CategoryConverter;
+import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.entity.Capacity;
+import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.entity.Hotel;
 import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.entity.Occupancy;
 import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.repository.HotelRepository;
 import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.service.comparator.CapacityComparator;
 import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.util.Utility;
-import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.entity.Capacity;
-import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.entity.Hotel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -44,10 +44,8 @@ import java.util.TreeMap;
  */
 @Service
 public class HotelService {
-
-
   public static final String TOTAL = "Total";
-  public static final int GROUP_STAR_MIN = 2;
+  private static final int GROUP_STAR_MIN = 2;
   private static int count = 0;
   private static final String FILENAME_HOTELS = "files" + File.separator + "hotels.txt";
   private static final String COMMA_DELIMITER = ",";
@@ -69,7 +67,6 @@ public class HotelService {
 
   private HotelRepository hotelRepository;
 
-
   @Autowired
   public HotelService(final HotelRepository hotelRepository) {
     this.hotelRepository = hotelRepository;
@@ -84,6 +81,7 @@ public class HotelService {
 
   /**
    * retrieve a hotel by id
+   *
    * @param id of the hotel to find
    * @return Instance of Hotel with the corresponding id
    */
@@ -94,6 +92,7 @@ public class HotelService {
 
   /**
    * Retrieve all hotels
+   *
    * @return Collection of Hotels
    */
   public List<Hotel> findAll() {
@@ -115,6 +114,7 @@ public class HotelService {
 
   /**
    * retrieve all Capacities
+   *
    * @return Collection of Capacities
    */
   public List<Capacity> findAllByCapacity() {
@@ -123,6 +123,7 @@ public class HotelService {
 
   /**
    * retrieve all occupancies
+   *
    * @return Collection of Occupancies
    */
   public List<Occupancy> findAllByOccupancy() {
@@ -131,6 +132,7 @@ public class HotelService {
 
   /**
    * retrieve all hotel names
+   *
    * @return Collection of hotel names
    */
   public Set<String> findAllHotelNames() {
@@ -139,6 +141,7 @@ public class HotelService {
 
   /**
    * Retrieve a hotel by name
+   *
    * @param name Name of the hotel to return data
    * @return Instance of Hotel
    */
@@ -147,12 +150,232 @@ public class HotelService {
   }
 
   /**
+   * Save the data of a new Hotel
+   *
+   * @param hotel Hotel to save
+   */
+  public void save(final Hotel hotel) {
+    hotels.add(hotel);
+    addHotelToCapacity(hotel);
+    addHotelToOccupancy(hotel);
+    addHotelToHotelNameList(hotel);
+
+    // write the hotel data to the database
+    hotelRepository.save(hotel);
+    exportDatabase();
+  }
+
+  public void update(final Hotel newHotel) {
+    // Data of the original one has to be altered with the new ones.
+    Hotel oldHotel = findById(newHotel.getId());
+    oldHotel.updateWith(newHotel);
+    // update is the same as save! as long as the id is the same!!!!!!!!
+    hotelRepository.save(oldHotel);
+
+    // Export the database as SQL file
+    exportDatabase();
+  }
+
+  public void delete(final Hotel newHotel) {
+
+    // Data of the original one has to be altered with the new ones.
+    Hotel oldHotel = findById(newHotel.getId());
+    oldHotel.updateWith(newHotel);
+    // update is the same as save! as long as the id is the same!!!!!!!!
+    hotelRepository.save(oldHotel);
+
+    // Export the database as SQL file
+    exportDatabase();
+  }
+
+  /**
+   * Dump the data as SQL file
+   */
+  public void exportDatabase() {
+    DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
+    Date date = new Date();
+
+    StringBuilder sql = new StringBuilder();
+    // Iterate over all hotels and create an SQL String
+    for (Hotel hotel : hotelRepository.findAll()) {
+      sql.append("INSERT INTO HOTEL VALUES (");
+      sql.append("").append(hotel.getId()).append(", ");
+      // The category is stored in the database as an integer, so the textual
+      // representation with a string has to be converted to an integer value
+      // Therefore we use a converter
+      sql.append(new CategoryConverter().convertToDatabaseColumn(hotel.getCategory()))
+          .append(", ");
+      sql.append("'").append(hotel.getName()).append("', ");
+      sql.append("'").append(hotel.getOwner()).append("', ");
+      sql.append("'").append(hotel.getContact()).append("', ");
+      sql.append("'").append(hotel.getAddress()).append("', ");
+      sql.append("'").append(hotel.getCity()).append("', ");
+      sql.append("'").append(hotel.getCityCode()).append("', ");
+      sql.append("'").append(hotel.getPhone()).append("', ");
+      sql.append(hotel.getNoRooms()).append(", ");
+      sql.append(hotel.getNoBeds()).append(", ");
+      sql.append("'").append(hotel.getUrl()).append("', ");
+      sql.append(hotel.isFamilyFriendly()).append(", ");
+      sql.append(hotel.isDogFriendly()).append(", ");
+      sql.append(hotel.isSpa()).append(", ");
+      sql.append(hotel.isFitness()).append(");\n");
+    }
+
+    // Write the SQL string to the file system
+    BufferedWriter writer = null;
+    try {
+      //String fileName = "hotel" + dateFormat.format(date) + ".sql";
+      String fileName = "hotels.sql";
+      writer = new BufferedWriter(new FileWriter("src/main/resources/hotelData/" + fileName));
+      writer.write(sql.toString());
+      writer.close();
+
+    } catch (IOException exc) {
+      exc.printStackTrace();
+    }
+  }
+
+  /**
+   * Clear the occupancy Collection
+   */
+  private static void clearOccupancyMap() {
+    hotelsByOccupancy.clear();
+    for (Category category : Category.values()) {
+      Occupancy defaultEntity =
+          new Occupancy.OccupancyBuilder()
+              .category(getStarIndex(category))
+              .bedCount(0)
+              .bedUtilization(0f)
+              .roomCount(0)
+              .roomUtilization(0f)
+              .build();
+      hotelsByOccupancy.put(getStarIndex(category), defaultEntity);
+    }
+
+    Occupancy total = new Occupancy.OccupancyBuilder()
+        .category(TOTAL)
+        .bedCount(0)
+        .bedUtilization(0f)
+        .roomCount(0)
+        .roomUtilization(0f)
+        .build();
+    hotelsByOccupancy.put(TOTAL, total);
+  }
+
+  /**
+   * Create a string for the hotel category * and ** are combined
+   *
+   * @param category Category to get the Star index of
+   * @return String representing the category group
+   */
+  private static String getStarIndex(final Category category) {
+    String index;
+
+    if (category.getStarAsNumber() <= GROUP_STAR_MIN) {
+      // category one and two are combined to "* & **"
+      index = Category.TWO + " & " + Category.ONE;
+    } else {
+      index = category.getStars();
+    }
+
+    return index;
+  }
+
+  /**
+   * Clear the Collection of the capacity
+   */
+  private static void clearCapacityMap() {
+
+    hotelsByCapacity.clear();
+    for (Category category : Category.values()) {
+      Capacity defaultEntity =
+          new Capacity.CapacityBuilder()
+              .category(getStarIndex(category))
+              .businessCount(0)
+              .roomCount(0)
+              .bedCount(0)
+              .build();
+      hotelsByCapacity.put(getStarIndex(category), defaultEntity);
+    }
+
+    Capacity total = new Capacity.CapacityBuilder()
+        .category(TOTAL)
+        .businessCount(0)
+        .bedCount(0)
+        .roomCount(0)
+        .build();
+    hotelsByCapacity.put(TOTAL, total);
+  }
+
+  /**
+   * Read data from a csv file
+   */
+  private void readDatabaseFromCsv() {
+    clearCapacityMap();
+    clearOccupancyMap();
+
+    BufferedReader fileReader = null;
+
+    try {
+      String line = "";
+
+      //Create the file reader
+      fileReader = new BufferedReader(new FileReader(Utility.getProjectDir() + FILENAME_HOTELS));
+
+      //Read the CSV file header to skip it
+      fileReader.readLine();
+
+      //Read the file line by line starting from the second line
+      while ((line = fileReader.readLine()) != null) {
+        //Get all tokens available in line
+        String[] tokens = line.split(COMMA_DELIMITER);
+        if (tokens.length > 0) {
+          int index = 0;
+
+          Hotel hotel = Hotel.builder()
+              .id(Integer.parseInt(Utility.stripQuotes(tokens[index++])))
+              .category(Category.get(Utility.stripQuotes(tokens[index++])))
+              .name(Utility.stripQuotes(tokens[index++]))
+              .owner(Utility.stripQuotes(tokens[index++]))
+              .contact(Utility.stripQuotes(tokens[index++]))
+              .address(Utility.stripQuotes(tokens[index++]))
+              .city(Utility.stripQuotes(tokens[index++]))
+              .cityCode(Utility.stripQuotes(tokens[index++]))
+              .phone(Utility.stripQuotes(tokens[index++]))
+              .noRooms(Integer.parseInt(Utility.stripQuotes(tokens[index++])))
+              .noBeds(Integer.parseInt(Utility.stripQuotes(tokens[index++])))
+              .build();
+          // There is no validation of the data read from the file. Should there be
+          // a validator? What to do if the validation fails?
+
+          hotels.add(hotel);
+          addHotelToCapacity(hotel);
+          addHotelToOccupancy(hotel);
+          addHotelToHotelNameList(hotel);
+        }
+      }
+
+    } catch (Exception exc) {
+      System.out.println("Error in CsvFileReader !!!");
+      exc.printStackTrace();
+    } finally {
+      try {
+        fileReader.close();
+      } catch (IOException exc) {
+        System.out.println("Error while closing fileReader !!!");
+        exc.printStackTrace();
+      }
+    }
+  }
+
+  /**
    * Add a hotel to the capacity list
+   *
    * @param hotel Hotel to add
    */
   private static void addHotelToCapacity(final Hotel hotel) {
     // Get the category string of the hotel. Please keep in mind that category one and
-    // two are combined together
+    // two are combined
     String index = getStarIndex((hotel.getCategory()));
 
     // Retrieve from the list the current count and increment the record by
@@ -165,6 +388,7 @@ public class HotelService {
             .roomCount(capacity.getRoomCount() + hotel.getNoRooms())
             .bedCount(capacity.getBedCount() + hotel.getNoBeds())
             .build();
+
     // Store back the data
     hotelsByCapacity.put(index, newCapacity);
 
@@ -178,6 +402,7 @@ public class HotelService {
 
   /**
    * Add a hotel to the occupancy list
+   *
    * @param hotel Hotel to add
    */
   private static void addHotelToOccupancy(final Hotel hotel) {
@@ -217,7 +442,6 @@ public class HotelService {
     count = newCount;
   }
 
-
   /**
    * Load data from H2 database
    */
@@ -233,236 +457,5 @@ public class HotelService {
       addHotelToOccupancy(hotel);
       addHotelToHotelNameList(hotel);
     }
-
   }
-
-  /**
-   * Read data from a csv file
-   */
-  private void readDatabaseFromCsv() {
-    clearCapacityMap();
-    clearOccupancyMap();
-
-    BufferedReader fileReader = null;
-
-    try {
-      String line = "";
-
-      //Create the file reader
-      fileReader = new BufferedReader(new FileReader(Utility.getProjectDir() + FILENAME_HOTELS));
-
-      //Read the CSV file header to skip it
-      fileReader.readLine();
-
-      //Read the file line by line starting from the second line
-      while ((line = fileReader.readLine()) != null) {
-        //Get all tokens available in line
-        String[] tokens = line.split(COMMA_DELIMITER);
-        if (tokens.length > 0) {
-          int index = 0;
-          //Create a new student object and fill his  data
-          Hotel hotel = Hotel.builder()
-              .id(Integer.parseInt(Utility.stripQuotes(tokens[index++])))
-              .category(Category.get(Utility.stripQuotes(tokens[index++])))
-              .name(Utility.stripQuotes(tokens[index++]))
-              .owner(Utility.stripQuotes(tokens[index++]))
-              .contact(Utility.stripQuotes(tokens[index++]))
-              .address(Utility.stripQuotes(tokens[index++]))
-              .city(Utility.stripQuotes(tokens[index++]))
-              .cityCode(Utility.stripQuotes(tokens[index++]))
-              .phone(Utility.stripQuotes(tokens[index++]))
-              .noRooms(Integer.parseInt(Utility.stripQuotes(tokens[index++])))
-              .noBeds(Integer.parseInt(Utility.stripQuotes(tokens[index++])))
-              .build();
-          // There is no validation of the data read from the file. Should there be
-          // a validator? What to do if the validation fails?
-
-          hotels.add(hotel);
-          addHotelToCapacity(hotel);
-          addHotelToOccupancy(hotel);
-          addHotelToHotelNameList(hotel);
-        }
-      }
-
-    } catch (Exception exc) {
-      System.out.println("Error in CsvFileReader !!!");
-      exc.printStackTrace();
-    } finally {
-      try {
-        fileReader.close();
-      } catch (IOException exc) {
-        System.out.println("Error while closing fileReader !!!");
-        exc.printStackTrace();
-      }
-    }
-  }
-
-  /**
-   * Clear the Collection of the capacity
-   */
-  private static void clearCapacityMap() {
-
-    hotelsByCapacity.clear();
-    for (Category category : Category.values()) {
-      Capacity defaultEntity =
-          new Capacity.CapacityBuilder()
-              .category(getStarIndex(category))
-              .businessCount(0)
-              .roomCount(0)
-              .bedCount(0)
-              .build();
-      hotelsByCapacity.put(getStarIndex(category), defaultEntity);
-    }
-
-    Capacity total = new Capacity.CapacityBuilder()
-        .category(TOTAL)
-        .businessCount(0)
-        .bedCount(0)
-        .roomCount(0)
-        .build();
-    hotelsByCapacity.put(TOTAL, total);
-
-  }
-
-  /**
-   * Clear the occupancy Collection
-   */
-  private static void clearOccupancyMap() {
-
-    hotelsByOccupancy.clear();
-    for (Category category : Category.values()) {
-      Occupancy defaultEntity =
-          new Occupancy.OccupancyBuilder()
-              .category(getStarIndex(category))
-              .bedCount(0)
-              .bedUtilization(0f)
-              .roomCount(0)
-              .roomUtilization(0f)
-              .build();
-      hotelsByOccupancy.put(getStarIndex(category), defaultEntity);
-    }
-
-    Occupancy total = new Occupancy.OccupancyBuilder()
-        .category(TOTAL)
-        .bedCount(0)
-        .bedUtilization(0f)
-        .roomCount(0)
-        .roomUtilization(0f)
-        .build();
-    hotelsByOccupancy.put(TOTAL, total);
-
-  }
-
-  /**
-   * Create a string for the hotel category
-   * Category * and ** are combined together
-   * @param category Category to get the Star index of
-   * @return String representing the category group
-   */
-  private static String getStarIndex(final Category category) {
-    String index;
-
-    if (category.getStarAsNumber() <= GROUP_STAR_MIN) {
-      // category one and two are combined to "* & **"
-      index = Category.TWO + " & " + Category.ONE;
-    } else {
-      index = category.getStars();
-    }
-
-    return index;
-  }
-
-  /**
-   * Save the data of a new Hotel
-   * @param hotel Hotel to save
-   * @return true if saving is a success
-   */
-  public boolean save(final Hotel hotel) {
-    hotels.add(hotel);
-    addHotelToCapacity(hotel);
-    addHotelToOccupancy(hotel);
-    addHotelToHotelNameList(hotel);
-    // write the hotel data to the database
-    hotelRepository.save(hotel);
-    exportDatabase();
-
-
-    return true;
-  }
-
-  public void update(final Hotel newHotel) {
-
-    // Data of the original one has to be altered with the new ones.
-    Hotel oldHotel = findById(newHotel.getId());
-    oldHotel.updateWith(newHotel);
-    // update is the same as save! as long as the id is the same!!!!!!!!
-    hotelRepository.save(oldHotel);
-
-    // Export the database as SQL file
-    exportDatabase();
-
-
-  }
-
-  public void delete(final Hotel newHotel) {
-
-    // Data of the original one has to be altered with the new ones.
-    Hotel oldHotel = findById(newHotel.getId());
-    oldHotel.updateWith(newHotel);
-    // update is the same as save! as long as the id is the same!!!!!!!!
-    hotelRepository.save(oldHotel);
-
-    // Export the database as SQL file
-    exportDatabase();
-
-
-  }
-
-  /**
-   * Dump the data as SQL file
-   */
-  public void exportDatabase() {
-    DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
-    Date date = new Date();
-
-    String sql = "";
-    // Iterate over all hotels and create an SQL String
-    // TODO: concatenating Strings like this is very unperformant and should be changed!!!!!!!
-    for (Hotel hotel : hotelRepository.findAll()) {
-      sql += "INSERT INTO HOTEL VALUES (";
-      sql += "" + hotel.getId() + ", ";
-      // The category is stored in the database as an integer, so the textual
-      // representation with a string has to be converted to an integer value
-      // Therefore we use a converter
-      sql += "" + new CategoryConverter().convertToDatabaseColumn(hotel.getCategory()) + ", ";
-      sql += "'" + hotel.getName() + "', ";
-      sql += "'" + hotel.getOwner() + "', ";
-      sql += "'" + hotel.getContact() + "', ";
-      sql += "'" + hotel.getAddress() + "', ";
-      sql += "'" + hotel.getCity() + "', ";
-      sql += "'" + hotel.getCityCode() + "', ";
-      sql += "'" + hotel.getPhone() + "', ";
-      sql += "" + hotel.getNoRooms() + ", ";
-      sql += "" + hotel.getNoBeds() + ", ";
-      sql += "'" + hotel.getUrl() + "', ";
-      sql += "" + hotel.isFamilyFriendly() + ", ";
-      sql += "" + hotel.isDogFriendly() + ", ";
-      sql += "" + hotel.isSpa() + ", ";
-      sql += "" + hotel.isFitness() + ");\n";
-    }
-
-    // Write the SQL string to the file system
-    BufferedWriter writer = null;
-    try {
-      //String fileName = "hotel" + dateFormat.format(date) + ".sql";
-      String fileName = "hotels.sql";
-      writer = new BufferedWriter(new FileWriter("src/main/resources/hotelData/" +fileName));
-      writer.write(sql);
-      writer.close();
-
-    } catch (IOException exc) {
-      exc.printStackTrace();
-    }
-  }
-
 }
