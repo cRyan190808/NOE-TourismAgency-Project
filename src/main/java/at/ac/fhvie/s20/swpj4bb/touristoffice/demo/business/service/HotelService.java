@@ -188,6 +188,13 @@ public class HotelService {
     exportDatabase();
   }
 
+  public void delete(final int id) {
+    hotelRepository.deleteById(id);
+
+    // Export the database as SQL file
+    exportDatabase();
+  }
+
   /**
    * Dump the data as SQL file
    */

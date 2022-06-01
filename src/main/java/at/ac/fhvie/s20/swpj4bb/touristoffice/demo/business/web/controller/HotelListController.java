@@ -1,5 +1,6 @@
 package at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.web.controller;
 
+import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.converter.CategoryConverter;
 import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.entity.Hotel;
 import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +13,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Controller
 public class HotelListController {
-
+  private final Logger LOG = Logger.getLogger(HotelListController.class.getSimpleName());
   private final HotelService hotelService;
 
   @Autowired
@@ -26,10 +28,11 @@ public class HotelListController {
   }
 
   @GetMapping("/hotelliste")
-  public String hotelOutput(
+  public String getHotels(
       final Model model,
       final @RequestParam("page") Optional<Integer> page,
       final @RequestParam("size") Optional<Integer> size) {
+    LOG.info("GET Request for page: " + page + " and size: " + size);
     int currentPage = page.orElse(1);
     int pageSize = size.orElse(10);
 
@@ -48,6 +51,13 @@ public class HotelListController {
     model.addAttribute("activePage", "index");
 
     return "hotelliste";
+  }
+
+  @GetMapping(value = "/hotelliste/delete/{id}")
+  public String delete(@PathVariable("id") int id) {
+    LOG.info("DELETE Request for id:" + id);
+    hotelService.delete(id);
+    return "redirect:/hotelliste";
   }
 }
 

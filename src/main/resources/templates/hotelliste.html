@@ -39,7 +39,11 @@
             <td th:text="${hotel.spa} ? #{yes} : #{no}"></td>
             <td th:text="${hotel.fitness} ? #{yes} : #{no}"></td>
             <td><button type="button" class="btn btn-primary" th:text="Ändern"/></button></td>
-            <td><button type="button" class="btn btn-primary" th:text="Löschen"/></button></td>
+            <td>
+            <button type="button" class="btn">
+                    <a th:href="@{'http://localhost:8080/hotelliste/delete/' + ${hotel.id}}" class="btn btn-primary" role="button" aria-pressed="true">Löschen</a>
+            </button>
+            </td>
         </tr>
     </tbody>
 </table>
