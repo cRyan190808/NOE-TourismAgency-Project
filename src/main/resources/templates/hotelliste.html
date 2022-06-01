@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<div th:replace="fragments/header :: header"></div>
+
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th th:text="#{id}"></th>
+        <th th:text="#{category}"></th>
+        <th th:text="#{name}"></th>
+        <th th:text="#{address}"></th>
+        <th th:text="#{city}"></th>
+        <th th:text="#{contact}"></th>
+        <th th:text="#{url}"></th>
+        <th th:text="#{familyfriendly}"></th>
+        <th th:text="#{dogfriendly}"></th>
+        <th th:text="#{spa}"></th>
+        <th th:text="#{fitness}"></th>
+        <th th:text="Ändern"></th>
+        <th th:text="Löschen"></th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr th:each="hotel, iStat : ${hotelPage.content}"
+            th:style="${iStat.odd}? 'font-weight: bold;'"
+            th:alt-title="${iStat.even}? 'even' : 'odd'">
+            <td th:text="${hotel.id}"></td>
+            <td th:text="${hotel.category}"></td>
+            <td th:text="${hotel.name}"></td>
+            <td th:text="${hotel.address}"></td>
+            <td th:text="${hotel.city}"></td>
+            <td th:text="${hotel.contact}"></td>
+            <td th:text="${hotel.url}"></td>
+            <td th:text="${hotel.familyFriendly} ? #{yes} : #{no}"></td>
+            <td th:text="${hotel.dogFriendly} ? #{yes} : #{no}"></td>
+            <td th:text="${hotel.spa} ? #{yes} : #{no}"></td>
+            <td th:text="${hotel.fitness} ? #{yes} : #{no}"></td>
+            <td><button type="button" class="btn btn-primary" th:text="Ändern"/></button></td>
+            <td><button type="button" class="btn btn-primary" th:text="Löschen"/></button></td>
+        </tr>
+    </tbody>
+</table>
+
+
+<!--<div th:if="${hotelPage.totalPages > 0}" class="pagination"-->
+<!--     th:each="pageNumber : ${pageNumbers}">-->
+<!--    <a th:href="@{/index(size=${hotelPage.size}, page=${pageNumber})}"-->
+<!--       th:text=${pageNumber}-->
+<!--       th:class="${pageNumber==hotelPage.number} ? active"></a>-->
+<!--</div>-->
+
+<!--<nav aria-label="Page navigation example">-->
+<!--    <ul class="pagination" th:if="${hotelPage.totalPages > 0}">-->
+<!--        <li>-->
+<!--            <div class="page-item" th:each="pageNumber : ${pageNumbers}">-->
+<!--                <a class="page-link" th:href="@{/index(size=${hotelPage.size}, page=${pageNumber})}">-->
+<!--                    <a th:text=${pageNumber}> </a>-->
+<!--                    <a th:class="${pageNumber==hotelPage.number} ? active"></a>-->
+<!--        </li>-->
+<!--    </ul>-->
+<!--</nav>-->
+
+
+<!--<br>-->
+<!--<nav aria-label="Pagination" th:if="${hotelPage.totalPages gt 0}">-->
+<!--    <ul class="pagination justify-content-center font-weight-bold">-->
+<!--        <li class="page-item" th:classappend="${hotelPage.number eq 0} ? 'disabled'">-->
+<!--            <a class="page-link"-->
+<!--               th:href="@{/index?page={id}(id=${hotelPage.number lt 2 ? 1 : hotelPage.number})}"-->
+<!--               aria-label="Previous" title="Previous Page" data-toggle="tooltip">-->
+<!--                <span aria-hidden="true">&laquo;</span>-->
+<!--            </a>-->
+<!--        </li>-->
+<!--        <li class="page-item" th:classappend="${i eq hotelPage.number + 1} ? 'active'"-->
+<!--            th:each="i : ${#numbers.sequence( 1, hotelPage.totalPages, 1)}">-->
+<!--            <a class="page-link" th:href="@{/index?page={id}(id=${i})}" th:text="${i}"-->
+<!--               th:title="${'Page '+ i}" data-toggle="tooltip"></a>-->
+<!--        </li>-->
+<!--        <li class="page-item" th:classappend="${hotelPage.number + 1 eq hotelPage.totalPages} ? 'disabled'">-->
+<!--            <a class="page-link"-->
+<!--               th:href="@{/index?page={id}(id=${hotelPage.number + 2})}"-->
+<!--               aria-label="Next" title="Next Page" data-toggle="tooltip">-->
+<!--                <span aria-hidden="true">&raquo;</span>-->
+<!--            </a>-->
+<!--        </li>-->
+<!--    </ul>-->
+<!--</nav>-->
+
+
+<!--<div th:if="${hotelPage.totalPages > 0}" class="pagination" th:each="pageNumber : ${pageNumbers}">-->
+<!--    <a th:href="@{/hotellist(size=${hotelPage.size}, page=${pageNumber})}" th:text="${pageNumber}" th:class="${pageNumber==hotelPage.number} ? active"></a>-->
+<!--</div>-->
+
+<button type="button" class="btn">
+    <a href="http://localhost:8080/backup" class="btn btn-primary" role="button"
+       aria-pressed="true">Backup</a>
+</button>
+
+<button type="button" class="btn">
+    <a href="http://localhost:8080/hotelform" class="btn btn-primary" role="button"
+       aria-pressed="true">Hotels hinzufügen</a>
+</button>
+
+<div th:replace="fragments/footer :: footerfixed"></div>
+
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -32,8 +32,8 @@ public class MainController {
 
   @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
   public String index(final Model model,
-                    final @RequestParam("page") Optional<Integer> page,
-                    final @RequestParam("size") Optional<Integer> size) {
+                      final @RequestParam("page") Optional<Integer> page,
+                      final @RequestParam("size") Optional<Integer> size) {
     int currentPage = page.orElse(1);
     // Yes, i know. A hardcoded default page size of two items. Just for demonstration
     // purposes

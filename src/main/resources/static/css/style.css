@@ -21,6 +21,9 @@ h5 {
 
 table {
     border-collapse: collapse;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 table th, table td {
