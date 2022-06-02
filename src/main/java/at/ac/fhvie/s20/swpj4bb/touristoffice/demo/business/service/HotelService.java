@@ -8,6 +8,7 @@ import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.entity.Occupancy;
 import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.repository.HotelRepository;
 import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.service.comparator.CapacityComparator;
 import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.util.Utility;
+import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.web.controller.HotelListController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -29,6 +30,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
+import java.util.logging.Logger;
 
 /**
  * Service forhandling the hotel data
@@ -44,6 +46,7 @@ import java.util.TreeMap;
  */
 @Service
 public class HotelService {
+  private final Logger LOG = Logger.getLogger(HotelService.class.getSimpleName());
   public static final String TOTAL = "Total";
   private static final int GROUP_STAR_MIN = 2;
   private static int count = 0;
@@ -176,21 +179,10 @@ public class HotelService {
     exportDatabase();
   }
 
-  public void delete(final Hotel newHotel) {
-
-    // Data of the original one has to be altered with the new ones.
-    Hotel oldHotel = findById(newHotel.getId());
-    oldHotel.updateWith(newHotel);
-    // update is the same as save! as long as the id is the same!!!!!!!!
-    hotelRepository.save(oldHotel);
-
-    // Export the database as SQL file
-    exportDatabase();
-  }
-
   public void delete(final int id) {
+    LOG.info("HotelService.delete(): Count before: " +  hotelRepository.count());
     hotelRepository.deleteById(id);
-
+    LOG.info("HotelService.delete(): Count after: " +  hotelRepository.count());
     // Export the database as SQL file
     exportDatabase();
   }
