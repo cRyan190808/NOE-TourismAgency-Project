@@ -1,6 +1,5 @@
 package at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.web.controller;
 
-import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.converter.CategoryConverter;
 import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.entity.Hotel;
 import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +33,7 @@ public class HotelListController {
       final @RequestParam("size") Optional<Integer> size) {
     LOG.info("GET Request for page: " + page + " and size: " + size);
     int currentPage = page.orElse(1);
-    int pageSize = size.orElse(10);
+    int pageSize = size.orElse(2);
 
     Pageable pageRequest = PageRequest.of(currentPage - 1, pageSize);
     Page<Hotel> hotelsPage = hotelService.findAllOrderedById(pageRequest);
