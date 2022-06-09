@@ -1,40 +1,77 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
 <div th:replace="fragments/header :: header"></div>
 
 <body>
 
 <div th:replace="fragments/navbar :: navbar"></div>
-<!---
+
 <table border="1">
     <thead>
     <tr>
         <th>ID</th>
-        <th>Kategorie</th>
+        <th>Hotel Name</th>
         <th>Zimmer</th>
         <th>Zimmerauslastung</th>
         <th>Betten</th>
         <th>Bettenauslastung</th>
-        <th>Bearbeiten</th>
+        <th>Ändern</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="hotel, iStat : ${hotelPage.content}"
+    <tr th:each="occupancy, iStat : ${occupanciesPage.content}"
         th:style="${iStat.odd}? 'font-weight: bold;'"
         th:alt-title="${iStat.even}? 'even' : 'odd'">
         <td th:text="${occupancy.id}"></td>
-        <td th:text="${occupancy.rooCount}"></td>
+        <td th:text="${occupancy.hotel.name}"></td>
+        <td th:text="${occupancy.roomCount}"></td>
         <td th:text="${occupancy.roomUtilization}"></td>
         <td th:text="${occupancy.bedCount}"></td>
         <td th:text="${occupancy.bedUtilization}"></td>
-        <td th:text="${hotel.edit}"></td>
-
+        <td>
+            <button type="button" class="btn btn-primary" th:text="Ändern"/></button>
+        </td>
     </tr>
     </tbody>
-</table> --->
+</table>
 
-
+<nav class="nav justify-content-center" aria-label="Pagination" th:if="${occupanciesPage.totalPages gt 0}" alignment="center" th:with="hotel=(${hotelId})">
+    <ul class="pagination justify-content-center font-weight-medium">
+        <li class="page-item" th:classappend="${occupanciesPage.number eq 0} ? 'disabled'">
+            <a class="page-link svg-icon"
+               th:href="@{/occupancy/${hotel}?page={id}(id=1)}"
+               aria-label="Previous"
+               title="Previous Page" rel="tooltip" th:text="First">
+            </a>
+        </li>
+        <li class="page-item" th:classappend="${occupanciesPage.number eq 0} ? 'disabled'">
+            <a class="page-link svg-icon"
+               th:href="@{/occupancy/${hotel}?page={id}(id=${occupanciesPage.number lt 2 ? 1 : occupanciesPage.number})}"
+               aria-label="Previous"
+               title="Previous Page" rel="tooltip" th:text="Previous">
+            </a>
+        </li>
+        <li class="page-item" th:classappend="${i eq occupanciesPage.number + 1} ? 'active'"
+            th:each="i : ${#numbers.sequence(1, occupanciesPage.totalPages, 1)}">
+            <a class="page-link" th:href="@{/occupancy/${hotel}?page={id}(id=${i})}" th:text="${i}"
+               th:title="${'Page '+ i}"
+               rel="tooltip"></a>
+        </li>
+        <li class="page-item" th:classappend="${occupanciesPage.number + 1 eq occupanciesPage.totalPages} ? 'disabled'">
+            <a class="page-link svg-icon" th:href="@{/occupancy/${hotel}?page={id}(id=${occupanciesPage.number + 2})}"
+               aria-label="Next"
+               title="Next Page" rel="tooltip" th:text="Next">
+            </a>
+        </li>
+        <li class="page-item" th:classappend="${occupanciesPage.number + 1 eq occupanciesPage.totalPages} ? 'disabled'">
+            <a class="page-link svg-icon" th:href="@{/occupancy/${hotel}?page={id}(id=${occupanciesPage.totalPages})}"
+               aria-label="Next"
+               title="Next Page" rel="tooltip" th:text="Last">
+            </a>
+        </li>
+    </ul>
+</nav>
 
 <div th:replace="fragments/footer :: footerfixed"></div>
 
