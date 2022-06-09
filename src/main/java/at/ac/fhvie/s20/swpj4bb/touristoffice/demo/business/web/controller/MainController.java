@@ -57,7 +57,6 @@ public class MainController {
           .collect(Collectors.toList());
       model.addAttribute("pageNumbers", pageNumbers);
     }
-    model.addAttribute("activePage", "index");
 
     return "index";
   }

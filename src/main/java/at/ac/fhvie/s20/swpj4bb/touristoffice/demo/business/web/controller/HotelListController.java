@@ -47,8 +47,6 @@ public class HotelListController {
       model.addAttribute("pageNumbers", pageNumbers);
     }
 
-    model.addAttribute("activePage", "index");
-
     return "hotelliste";
   }
 

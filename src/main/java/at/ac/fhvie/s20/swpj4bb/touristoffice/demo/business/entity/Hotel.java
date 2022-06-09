@@ -9,7 +9,8 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public final class Hotel {
+@Table(name = "hotel")
+public class Hotel {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,6 +44,7 @@ public final class Hotel {
   private boolean dogFriendly;
 
   private boolean spa;
+
   private boolean fitness;
 
   public static HotelBuilder builder() {
@@ -67,7 +69,6 @@ public final class Hotel {
     this.fitness = other.fitness;
     return this;
   }
-
 
   public static class HotelBuilder {
     private int id;
@@ -181,8 +182,23 @@ public final class Hotel {
     }
 
     public Hotel build() {
-      return new Hotel(id, category, name, owner, contact, address, city, cityCode, phone,
-          noRooms, noBeds, url, familyFriendly, dogFriendly, spa, fitness);
+      return new Hotel(
+          id,
+          category,
+          name,
+          owner,
+          contact,
+          address,
+          city,
+          cityCode,
+          phone,
+          noRooms,
+          noBeds,
+          url,
+          familyFriendly,
+          dogFriendly,
+          spa,
+          fitness);
     }
 
     public String toString() {

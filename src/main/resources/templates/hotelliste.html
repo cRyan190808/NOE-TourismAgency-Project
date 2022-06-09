@@ -41,8 +41,8 @@
         <td th:text="${hotel.spa} ? #{yes} : #{no}"></td>
         <td th:text="${hotel.fitness} ? #{yes} : #{no}"></td>
         <td>
-            <button type="button" class="btn btn-primary" th:text="Ändern"/>
-            </button></td>
+            <button type="button" class="btn btn-primary" th:text="Ändern"/></button>
+        </td>
         <td>
             <button type="button" class="btn">
                 <a th:href="@{'http://localhost:8080/hotelliste/delete/' + ${hotel.id}}" class="btn btn-primary"
@@ -60,7 +60,7 @@
             <a class="page-link svg-icon"
                th:href="@{/hotelliste?page={id}(id=1)}"
                aria-label="Previous"
-               title="Previous Page" rel="tooltip" th:text="First">
+               title="First Page" rel="tooltip" th:text="First">
             </a>
         </li>
         <li class="page-item" th:classappend="${hotelPage.number eq 0} ? 'disabled'">
@@ -85,7 +85,7 @@
         <li class="page-item" th:classappend="${hotelPage.number + 1 eq hotelPage.totalPages} ? 'disabled'">
             <a class="page-link svg-icon" th:href="@{/hotelliste?page={id}(id=${hotelPage.totalPages})}"
                aria-label="Next"
-               title="Next Page" rel="tooltip" th:text="Last">
+               title="Last Page" rel="tooltip" th:text="Last">
             </a>
         </li>
     </ul>

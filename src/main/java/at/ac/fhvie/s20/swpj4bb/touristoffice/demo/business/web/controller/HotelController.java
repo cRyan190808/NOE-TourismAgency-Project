@@ -27,9 +27,6 @@ public class HotelController {
   @GetMapping("/hotelform")
   public String fooForm(Model model) {
     model.addAttribute("hotel", new Hotel());
-//    model.addAttribute("tempCategory", tempCategory = 0);
-    model.addAttribute("activePage", "hotelform");
-
     return "hotelform";
   }
 

@@ -8,7 +8,6 @@ import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.entity.Occupancy;
 import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.repository.HotelRepository;
 import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.service.comparator.CapacityComparator;
 import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.util.Utility;
-import at.ac.fhvie.s20.swpj4bb.touristoffice.demo.business.web.controller.HotelListController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -30,7 +29,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
-import java.util.logging.Logger;
 
 /**
  * Service forhandling the hotel data
@@ -46,7 +44,6 @@ import java.util.logging.Logger;
  */
 @Service
 public class HotelService {
-  private final Logger LOG = Logger.getLogger(HotelService.class.getSimpleName());
   public static final String TOTAL = "Total";
   private static final int GROUP_STAR_MIN = 2;
   private static int count = 0;
@@ -149,7 +146,11 @@ public class HotelService {
    * @return Instance of Hotel
    */
   public Hotel findHotelByName(final String name) {
-    return hotelsByName.get(name);
+    hotelRepository.findByName(name);
+    List<Hotel> hotels = hotelRepository.findByName(name);
+
+    if (hotels.isEmpty()) return null;
+    else return hotels.get(0);
   }
 
   /**
@@ -180,9 +181,7 @@ public class HotelService {
   }
 
   public void delete(final int id) {
-    LOG.info("HotelService.delete(): Count before: " +  hotelRepository.count());
     hotelRepository.deleteById(id);
-    LOG.info("HotelService.delete(): Count after: " +  hotelRepository.count());
     // Export the database as SQL file
     exportDatabase();
   }
