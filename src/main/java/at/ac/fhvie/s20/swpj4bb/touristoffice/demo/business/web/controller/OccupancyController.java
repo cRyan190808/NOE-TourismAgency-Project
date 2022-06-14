@@ -10,11 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+
 import java.util.Optional;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @Controller
 public class OccupancyController {
@@ -26,7 +24,7 @@ public class OccupancyController {
     this.occupancyService = occupancyService;
   }
 
-@GetMapping(value = "/occupancy/{hotelId}")
+  @GetMapping(value = "/occupancy/{hotelId}")
   public String getOccupancy(
       final Model model,
       final @RequestParam("page") Optional<Integer> page,
@@ -37,19 +35,11 @@ public class OccupancyController {
     int pageSize = size.orElse(2);
 
     Pageable pageRequest = PageRequest.of(currentPage - 1, pageSize);
-    Page<Occupancy2> occupanciesPage = occupancyService.findOccupanciesByHotelId(pageRequest, hotelId);
+    Page<Occupancy2> occupanciesPage =
+        occupancyService.findOccupanciesByHotelId(pageRequest, hotelId);
     model.addAttribute("occupanciesPage", occupanciesPage);
-    int totalPages = occupanciesPage.getTotalPages();
-    if (totalPages > 0) {
-      List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
-          .boxed()
-          .collect(Collectors.toList());
+    model.addAttribute("hotelId", hotelId);
 
-      model.addAttribute("pageNumbers", pageNumbers);
-      model.addAttribute("hotelId", hotelId);
-    }
-
-  // Integer.parseInt(hotelId)
     return "occupancy";
   }
 }
