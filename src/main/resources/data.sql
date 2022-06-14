@@ -9,7 +9,7 @@ INSERT INTO HOTEL VALUES (3, 4, 'Beim Branntweiner', 'Ima Voll', 'Gretel', 'Wein
 INSERT INTO HOTEL VALUES (4, 3, 'Das ABC', 'Il. Literat', 'der böse Wolf', 'Heinzelmännchenweg 3', 'Buchstaben',
                           'A-BCDEF', '9876', 2, 2, 'www.das-abc.at', false, true, false, false);
 
-INSERT INTO OCCUPANCY VALUES (1, 1, 0, 1, 0, 2015, 0, 0);
+INSERT INTO OCCUPANCY VALUES (1, 1, 0, 1, 3, 2015, 0, 0);
 INSERT INTO OCCUPANCY VALUES (2, 2, 1, 2, 2, 2014, 1, 1);
 INSERT INTO OCCUPANCY VALUES (3, 3, 2, 3, 1, 2014, 2, 2);
 INSERT INTO OCCUPANCY VALUES (4, 4, 3, 5, 2, 2012, 3, 3);
