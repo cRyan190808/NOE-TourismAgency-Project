@@ -10,11 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+
 import java.util.Optional;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+
 
 @Controller
 public class HotelListController {
@@ -38,14 +37,6 @@ public class HotelListController {
     Pageable pageRequest = PageRequest.of(currentPage - 1, pageSize);
     Page<Hotel> hotelsPage = hotelService.findAllOrderedById(pageRequest);
     model.addAttribute("hotelPage", hotelsPage);
-    int totalPages = hotelsPage.getTotalPages();
-    if (totalPages > 0) {
-      List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
-          .boxed()
-          .collect(Collectors.toList());
-
-      model.addAttribute("pageNumbers", pageNumbers);
-    }
 
     return "hotelliste";
   }
