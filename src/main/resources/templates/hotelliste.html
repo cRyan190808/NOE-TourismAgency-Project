@@ -21,6 +21,7 @@
         <th th:text="#{dogfriendly}"></th>
         <th th:text="#{spa}"></th>
         <th th:text="#{fitness}"></th>
+        <th th:text="Belegung"></th>
         <th th:text="Ändern"></th>
         <th th:text="Löschen"></th>
     </tr>
@@ -41,6 +42,10 @@
         <td th:text="${hotel.spa} ? #{yes} : #{no}"></td>
         <td th:text="${hotel.fitness} ? #{yes} : #{no}"></td>
         <td>
+            <a th:href="@{'http://localhost:8080/occupancy/' + ${hotel.id}}" class="btn btn-primary"
+               role="button" aria-pressed="true">Belegung</a>
+        </td>
+        <td>
             <button type="button" class="btn btn-primary" th:text="Ändern"/></button>
         </td>
         <td>
@@ -49,12 +54,13 @@
                    role="button" aria-pressed="true">Löschen</a>
             </button>
         </td>
+
     </tr>
     </tbody>
 </table>
 
-<nav class="nav justify-content-center" aria-label="Pagination" th:if="${hotelPage.totalPages gt 0}"
-     alignment="center">
+<<nav class="nav justify-content-center" aria-label="Pagination" th:if="${hotelPage.totalPages gt 0}"
+      alignment="center">
     <ul class="pagination justify-content-center font-weight-medium">
         <li class="page-item" th:classappend="${hotelPage.number eq 0} ? 'disabled'">
             <a class="page-link svg-icon"
