@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import java.util.Optional;
@@ -39,6 +40,26 @@ public class HotelListController {
     model.addAttribute("hotelPage", hotelsPage);
 
     return "hotelliste";
+  }
+
+  @PostMapping("/hotelliste/save")
+  public String saveHotel(Hotel hotel, RedirectAttributes ra) {
+    if (hotelService.existsHotel(hotel.getId())) {
+      hotelService.update(hotel);
+    }
+    else {
+      hotelService.save(hotel);
+    }
+    ra.addFlashAttribute("message", "Das Hotel wurde erfogreich gespeichert!");
+    return "redirect:/hotelliste";
+  }
+
+  @GetMapping("/hotelliste/edit/{id}")
+  public String editHotel(@PathVariable("id") Integer id, Model model, RedirectAttributes ra) {
+    Hotel hotel = hotelService.getHotel(id);
+    model.addAttribute("hotel", hotel);
+    model.addAttribute("pageTitle", "Hotel bearbeiten (ID: " + id + ")");
+    return "hotelform";
   }
 
   @GetMapping(value = "/hotelliste/delete/{id}")

@@ -32,7 +32,8 @@
 </section>
 
 <!-- Form Controls -  https://getbootstrap.com/docs/5.0/forms/form-control/ -->
-<form style="width: 400px; margin: auto" th:action="@{/hotelform}" th:object="${hotel}" method="post">
+<form style="width: 400px; margin: auto" th:action="@{/hotelliste/save}" th:object="${hotel}" method="post">
+    <input type="hidden" th:field="*{id}"/>
     <p th:text="#{name}+ ':'"/> <input class="form-control" type="text" placeholder="Name" th:field="*{name}"/></p>
     <!--
     <p th:text="#{owner}+ ':'"/> <input class="form-control" type="text" placeholder="e.g. Mika Muster" th:field="*{owner}"/></p>
@@ -115,7 +116,14 @@
 <!--        </a>-->
 <!--    </button>-->
 
-    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /> </p>
+    <div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary m-2">Speichern</button>
+            <button type="button" class="btn btn-primary m-2" onclick="resetForm()">Zurücksetzen</button>
+        </div>
+    </div>
+
+    <!-- <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /> </p> -->
 <br>
 
 </form>

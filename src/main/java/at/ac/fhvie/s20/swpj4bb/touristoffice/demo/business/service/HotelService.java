@@ -26,6 +26,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
@@ -88,6 +89,11 @@ public class HotelService {
   public Hotel findById(final int id) {
     // Accesses the repository i.e. the database
     return hotelRepository.findById(id).get();
+  }
+
+  public boolean existsHotel(final int id) {
+    Optional<Hotel> result = hotelRepository.findById(id);
+    return result.isPresent();
   }
 
   /**
@@ -456,4 +462,10 @@ public class HotelService {
       addHotelToHotelNameList(hotel);
     }
   }
+
+  public Hotel getHotel(Integer hotelId) {
+    Optional<Hotel> result = hotelRepository.findById(hotelId);
+    return result.get();
+  }
+
 }

@@ -46,7 +46,10 @@
                role="button" aria-pressed="true">Belegung</a>
         </td>
         <td>
-            <button type="button" class="btn btn-primary" th:text="Ändern"/></button>
+            <button type="button" class="btn">
+                <a th:href="@{'/hotelliste/edit/' + ${hotel.id}}" class="btn btn-primary"
+                   role="button" aria-pressed="true">Ändern</a>
+            </button>
         </td>
         <td>
             <button type="button" class="btn">
